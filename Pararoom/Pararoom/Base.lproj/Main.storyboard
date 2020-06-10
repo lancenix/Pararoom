@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="-577.90178571428567"/>
         </scene>
-        <!--Gameplay View Controller-->
+        <!--Game Play View Controller-->
         <scene sceneID="p9A-su-l3n">
             <objects>
-                <viewController id="abv-5q-nIE" customClass="GameplayViewController" customModule="Pararoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="abv-5q-nIE" customClass="GamePlayViewController" customModule="Pararoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GQb-2I-yaG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,15 +174,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="oEd-2P-eoi"/>
                     <connections>
-                        <outlet property="contentLabel" destination="jOS-eq-oQG" id="s9T-D1-sIU"/>
-                        <outlet property="nextButton" destination="zXj-lp-vx5" id="Q21-sm-ht6"/>
-                        <outlet property="nextButtonImage" destination="gUD-Xv-dvN" id="Y1D-0Z-g0E"/>
-                        <outlet property="npcImage" destination="elP-2h-24J" id="Sqv-J0-f2b"/>
-                        <outlet property="npcViewController" destination="sXT-lr-EQ6" id="4Py-ni-R2K"/>
-                        <outlet property="prevButton" destination="3cO-Kh-lP4" id="ZUA-EV-dB8"/>
-                        <outlet property="prevButtonImage" destination="37T-gI-TGN" id="CUg-dC-mZa"/>
-                        <outlet property="recommendationViewContainer" destination="4d6-xl-aVy" id="tgV-Sc-z9t"/>
-                        <outlet property="sceneView" destination="F2S-NT-Wu7" id="f5Z-DZ-cXj"/>
+                        <outlet property="contentLabel" destination="jOS-eq-oQG" id="FWj-8X-e7B"/>
+                        <outlet property="nextButton" destination="zXj-lp-vx5" id="8XW-M0-ZCi"/>
+                        <outlet property="nextButtonImage" destination="gUD-Xv-dvN" id="Z6Z-5D-flh"/>
+                        <outlet property="npcImage" destination="elP-2h-24J" id="Dbt-Gh-lBD"/>
+                        <outlet property="npcViewController" destination="sXT-lr-EQ6" id="v5Y-Gw-mfB"/>
+                        <outlet property="prevButton" destination="3cO-Kh-lP4" id="qXq-yI-rLh"/>
+                        <outlet property="prevButtonImage" destination="37T-gI-TGN" id="DD6-tn-sfr"/>
+                        <outlet property="recommendationViewContainer" destination="4d6-xl-aVy" id="UgI-pm-4Aw"/>
+                        <outlet property="sceneView" destination="F2S-NT-Wu7" id="LRn-MH-Ye9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-3l-eWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

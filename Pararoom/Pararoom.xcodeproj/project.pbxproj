@@ -17,7 +17,7 @@
 		EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197952490CC2D0072375E /* GifImageExtension.swift */; };
 		EAA197AE2490F9630072375E /* gameBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AD2490F9630072375E /* gameBg.gif */; };
 		EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AF2490F96C0072375E /* FireballARemake.gif */; };
-		EAA197B22490FCE00072375E /* GameplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197B12490FCE00072375E /* GameplayViewController.swift */; };
+		EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197B3249105200072375E /* GamePlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		EAA197952490CC2D0072375E /* GifImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageExtension.swift; sourceTree = "<group>"; };
 		EAA197AD2490F9630072375E /* gameBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBg.gif; sourceTree = "<group>"; };
 		EAA197AF2490F96C0072375E /* FireballARemake.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballARemake.gif; sourceTree = "<group>"; };
-		EAA197B12490FCE00072375E /* GameplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayViewController.swift; sourceTree = SOURCE_ROOT; };
+		EAA197B3249105200072375E /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,12 +72,12 @@
 				4755AF37248F7C9900CF2D95 /* art.scnassets */,
 				4755AF39248F7C9900CF2D95 /* ViewControllerr.swift */,
 				4755AF3B248F7C9900CF2D95 /* Main.storyboard */,
-				EAA197B12490FCE00072375E /* GameplayViewController.swift */,
 				EAA1978B2490ABF20072375E /* MainMenuViewController.swift */,
 				EAA197952490CC2D0072375E /* GifImageExtension.swift */,
 				4755AF3E248F7C9B00CF2D95 /* Assets.xcassets */,
 				4755AF40248F7C9B00CF2D95 /* LaunchScreen.storyboard */,
 				4755AF43248F7C9B00CF2D95 /* Info.plist */,
+				EAA197B3249105200072375E /* GamePlayViewController.swift */,
 			);
 			path = Pararoom;
 			sourceTree = "<group>";
@@ -156,10 +156,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAA197B22490FCE00072375E /* GameplayViewController.swift in Sources */,
 				EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */,
 				4755AF3A248F7C9900CF2D95 /* ViewControllerr.swift in Sources */,
 				EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */,
+				EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */,
 				4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

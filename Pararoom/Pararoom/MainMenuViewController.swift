@@ -18,6 +18,9 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
 //        overrideUserInterfaceStyle = .dark
         // Do any additional setup after loading the view.
+        self.view.sendSubviewToBack(backgroundImage)
+        self.view.bringSubviewToFront(menuView)
+        
         setupView()
     }
     
