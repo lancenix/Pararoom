@@ -12,19 +12,30 @@ class MainMenuViewController: UIViewController {
 
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var onboardingViewContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        overrideUserInterfaceStyle = .dark
         // Do any additional setup after loading the view.
+        setupView()
+    }
+    
+    func setupView() {
         backgroundImage.loadGif(name: "gameBg")
         self.view.sendSubviewToBack(backgroundImage)
         self.view.bringSubviewToFront(menuView)
+        
+        onboardingViewContainer.isHidden = true
     }
     
     @IBAction func playButton(_ sender: Any) {
-        performSegue(withIdentifier: "fyiOnboarding", sender: self)
+        menuView.isHidden = true
+        onboardingViewContainer.isHidden = false
     }
     
+    @IBAction func proceedButton(_ sender: Any) {
+        performSegue(withIdentifier: "toGameplay", sender: self)
+    }
     
 }
