@@ -19,16 +19,6 @@ extension UIImageView {
         }
     }
 
-    @available(iOS 9.0, *)
-    public func loadGif(asset: String) {
-        DispatchQueue.global().async {
-            let image = UIImage.gif(asset: asset)
-            DispatchQueue.main.async {
-                self.image = image
-            }
-        }
-    }
-
 }
 
 extension UIImage {
@@ -76,32 +66,17 @@ extension UIImage {
         return gif(data: imageData)
     }
 
-    @available(iOS 9.0, *)
-    public class func gif(asset: String) -> UIImage? {
-        // Create source from assets catalog
-        guard let dataAsset = NSDataAsset(name: asset) else {
-            print("SwiftGif: Cannot turn image named \"\(asset)\" into NSDataAsset")
-            return nil
-        }
-
-        return gif(data: dataAsset.data)
-    }
-
     internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
         var delay = 0.1
 
         // Get dictionaries
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
         let gifPropertiesPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
-        defer {
-            gifPropertiesPointer.deallocate()
-        }
-        let unsafePointer = Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()
-        if CFDictionaryGetValueIfPresent(cfProperties, unsafePointer, gifPropertiesPointer) == false {
+        if CFDictionaryGetValueIfPresent(cfProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(), gifPropertiesPointer) == false {
             return delay
         }
 
-        let gifProperties: CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
+        let gifProperties:CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
 
         // Get delay time
         var delayObject: AnyObject = unsafeBitCast(
@@ -113,51 +88,51 @@ extension UIImage {
                 Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
         }
 
-        if let delayObject = delayObject as? Double, delayObject > 0 {
-            delay = delayObject
-        } else {
+        delay = delayObject as? Double ?? 0
+
+        if delay < 0.1 {
             delay = 0.1 // Make sure they're not too fast
         }
 
         return delay
     }
 
-    internal class func gcdForPair(_ lhs: Int?, _ rhs: Int?) -> Int {
-        var lhs = lhs
-        var rhs = rhs
+    internal class func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
+        var a = a
+        var b = b
         // Check if one of them is nil
-        if rhs == nil || lhs == nil {
-            if rhs != nil {
-                return rhs!
-            } else if lhs != nil {
-                return lhs!
+        if b == nil || a == nil {
+            if b != nil {
+                return b!
+            } else if a != nil {
+                return a!
             } else {
                 return 0
             }
         }
 
         // Swap for modulo
-        if lhs! < rhs! {
-            let ctp = lhs
-            lhs = rhs
-            rhs = ctp
+        if a! < b! {
+            let c = a
+            a = b
+            b = c
         }
 
         // Get greatest common divisor
         var rest: Int
         while true {
-            rest = lhs! % rhs!
+            rest = a! % b!
 
             if rest == 0 {
-                return rhs! // Found it
+                return b! // Found it
             } else {
-                lhs = rhs
-                rhs = rest
+                a = b
+                b = rest
             }
         }
     }
 
-    internal class func gcdForArray(_ array: [Int]) -> Int {
+    internal class func gcdForArray(_ array: Array<Int>) -> Int {
         if array.isEmpty {
             return 1
         }
@@ -165,7 +140,9 @@ extension UIImage {
         var gcd = array[0]
 
         for val in array {
-            gcd = UIImage.gcdForPair(val, gcd)
+            autoreleasepool {
+                gcd = UIImage.gcdForPair(val, gcd)
+            }
         }
 
         return gcd
@@ -177,14 +154,16 @@ extension UIImage {
         var delays = [Int]()
 
         // Fill arrays
-        for index in 0..<count {
+        for i in 0..<count {
+            autoreleasepool {
             // Add image
-            if let image = CGImageSourceCreateImageAtIndex(source, index, nil) {
-                images.append(image)
+                    if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
+                        images.append(image)
+                }
             }
 
             // At it's delay in cs
-            let delaySeconds = UIImage.delayForImageAtIndex(Int(index),
+            let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
                 source: source)
             delays.append(Int(delaySeconds * 1000.0)) // Seconds to ms
         }
@@ -194,7 +173,9 @@ extension UIImage {
             var sum = 0
 
             for val: Int in delays {
-                sum += val
+                autoreleasepool {
+                        sum += val
+                    }
             }
 
             return sum
@@ -206,13 +187,15 @@ extension UIImage {
 
         var frame: UIImage
         var frameCount: Int
-        for index in 0..<count {
-            frame = UIImage(cgImage: images[Int(index)])
-            frameCount = Int(delays[Int(index)] / gcd)
-
-            for _ in 0..<frameCount {
-                frames.append(frame)
-            }
+        for i in 0..<count {
+            frame = UIImage(cgImage: images[Int(i)])
+            frameCount = Int(delays[Int(i)] / gcd)
+                for _ in 0..<frameCount {
+                    autoreleasepool {
+                            frames.append(frame)
+                        }
+                }
+            
         }
 
         // Heyhey

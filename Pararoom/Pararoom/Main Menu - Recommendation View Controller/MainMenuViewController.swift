@@ -26,9 +26,5 @@ class MainMenuViewController: UIViewController {
         performSegue(withIdentifier: "fyiOnboarding", sender: self)
     }
     
-    func loadImage() {
-    
-        
-    }
     
 }
