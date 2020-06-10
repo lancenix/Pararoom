@@ -26,7 +26,7 @@ class FireballOnboardingViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         
         sceneView.delegate = self
-        npcImage.loadGif(name: "FireballARemake")
+        npcImage.loadGif(name: "FireballARemake.gif")
 //        self.view.sendSubviewToBack(npcImage)
         
         contentLabel.text = convArray[0]

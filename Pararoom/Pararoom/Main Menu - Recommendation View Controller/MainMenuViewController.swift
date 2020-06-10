@@ -17,7 +17,7 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
 //        overrideUserInterfaceStyle = .dark
         // Do any additional setup after loading the view.
-        backgroundImage.loadGif(name: "gameBg")
+        backgroundImage.loadGif(name: "gameBg.gif")
         self.view.sendSubviewToBack(backgroundImage)
         self.view.bringSubviewToFront(menuView)
     }
