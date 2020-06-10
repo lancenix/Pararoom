@@ -31,6 +31,104 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             
             sceneView.delegate = self
             
+            let portal = SCNText(string: "Portal",extrusionDepth: 0)
+                let fire1 = SCNText(string: "Fire 1",extrusionDepth: 0)
+                let fire2 = SCNText(string: "Fire 2",extrusionDepth: 0)
+                let bingkaiKiri = SCNText(string: "Bingkai Kiri",extrusionDepth: 0)
+                let brankas = SCNText(string: "Brankas",extrusionDepth: 0)
+                let bingkaiKanan = SCNText(string: "Binkai Kanan",extrusionDepth: 0)
+                let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
+                let grim = SCNText(string: "grim",extrusionDepth: 0)
+                
+            
+               
+                
+                
+                let material = SCNMaterial()
+
+                material.diffuse.contents = UIColor.red
+
+                portal.materials = [material]
+                fire1.materials = [material]
+                fire2.materials = [material]
+                bingkaiKiri.materials = [material]
+                bingkaiKanan.materials = [material]
+                brankas.materials = [material]
+                youDontWant.materials = [material]
+                grim.materials = [material]
+
+                let nodePortal = SCNNode()
+                nodePortal.position = SCNVector3(x : -0.1, y: 0, z : -5)
+                nodePortal.scale = SCNVector3(x: 0.01, y: 0.01, z: 0.01)
+                nodePortal.geometry = portal
+                sceneView.scene.rootNode.addChildNode(nodePortal)
+                sceneView.autoenablesDefaultLighting = true
+
+                let nodeYouDont = SCNNode()
+                nodeYouDont.position = SCNVector3(x : -0.1, y: 0.5, z : 5)
+                nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
+                nodeYouDont.geometry = youDontWant
+                sceneView.scene.rootNode.addChildNode(nodeYouDont)
+                sceneView.autoenablesDefaultLighting = true
+
+                let FireKiri = SCNNode()
+                FireKiri.position = SCNVector3(x : -1, y: 1.5, z : -5)
+                FireKiri.scale = SCNVector3(x: 0.01, y: 0.02, z: 0.01)
+                FireKiri.geometry = fire1
+                sceneView.scene.rootNode.addChildNode(FireKiri)
+                sceneView.autoenablesDefaultLighting = true
+
+                 let FireKanan = SCNNode()
+                FireKanan.position = SCNVector3(x : 1, y: 1.5, z : -5)
+                FireKanan.scale = SCNVector3(x: 0.01, y: 0.02, z: 0.01)
+                FireKanan.geometry = fire2
+                sceneView.scene.rootNode.addChildNode(FireKanan)
+                sceneView.autoenablesDefaultLighting = true
+
+                let nodeBingkaiKiri = SCNNode()
+                nodeBingkaiKiri.position = SCNVector3(x : -5, y: 1.5, z : -0.6)
+                nodeBingkaiKiri.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
+                nodeBingkaiKiri.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
+                nodeBingkaiKiri.geometry = bingkaiKiri
+                sceneView.scene.rootNode.addChildNode(nodeBingkaiKiri)
+                sceneView.autoenablesDefaultLighting = true
+            
+                let nodeGrim = SCNNode()
+                nodeGrim.position = SCNVector3(x : -5, y: -1.5, z : 0.6)
+                nodeGrim.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
+                nodeGrim.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
+                nodeGrim.geometry = grim
+                sceneView.scene.rootNode.addChildNode(nodeGrim)
+                sceneView.autoenablesDefaultLighting = true
+                
+                let nodeBingkaiKanan = SCNNode()
+                nodeBingkaiKanan.position = SCNVector3(x : 5, y: 1, z : -1)
+                nodeBingkaiKanan.rotation = SCNVector4Make(0, 1, 0, .pi / 2)
+                nodeBingkaiKanan.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
+                nodeBingkaiKanan.geometry = bingkaiKanan
+                sceneView.scene.rootNode.addChildNode(nodeBingkaiKanan)
+                sceneView.autoenablesDefaultLighting = true
+                
+                let nodeBrankas = SCNNode()
+                nodeBrankas.position = SCNVector3(x : 5, y: -2, z : 1)
+                nodeBrankas.rotation = SCNVector4Make(0, 1, 0, .pi / 2)
+                nodeBrankas.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
+                nodeBrankas.geometry = brankas
+                sceneView.scene.rootNode.addChildNode(nodeBrankas)
+                sceneView.autoenablesDefaultLighting = true
+            
+            let bingkaiGeometry = SCNPlane(width: 2, height: 1)
+            let bingkaiMaterial = SCNMaterial()
+            bingkaiMaterial.diffuse.contents = UIImage(named: "PROCEED")
+            bingkaiGeometry.materials = [bingkaiMaterial]
+            
+            let nodeBingkai = SCNNode()
+            nodeBingkai.position = SCNVector3(x : -0.1, y: -0.5, z : -5)
+            nodeBingkai.scale = SCNVector3(x: 0.01, y: 0.01, z: 0.01)
+            nodeBingkai.geometry = bingkaiGeometry
+            sceneView.scene.rootNode.addChildNode(nodeBingkai)
+            sceneView.autoenablesDefaultLighting = true
+            
             // Show statistics such as fps and timing information
             sceneView.showsStatistics = true
             
