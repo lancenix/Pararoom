@@ -38,6 +38,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         setupFire2()
         setupBrankas()
         setupBingkaiKanan()
+        setupWoodboard()
         setupGrim()
         
         // Show statistics such as fps and timing information
@@ -113,15 +114,28 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupBingkaiKanan(){
-        let bingkaiKanan = SCNText(string: "Binkai Kanan",extrusionDepth: 0)
-        bingkaiKanan.materials = [SCNMaterial()]
+        let planeGeometry = SCNPlane(width: 5, height: 5)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "painting_wood")
+        planeGeometry.materials = [material]
         
-        let nodeBingkaiKanan = SCNNode()
-        nodeBingkaiKanan.position = SCNVector3(x : 5, y: 1, z : -1)
-        nodeBingkaiKanan.rotation = SCNVector4Make(0, 1, 0, .pi / 2)
-        nodeBingkaiKanan.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-        nodeBingkaiKanan.geometry = bingkaiKanan
+        let nodeBingkaiKanan = SCNNode(geometry: planeGeometry)
+        nodeBingkaiKanan.position = SCNVector3(x : 7, y: 0, z : -1)
+        nodeBingkaiKanan.rotation = SCNVector4Make(0, -1, 0, .pi/2)
         sceneView.scene.rootNode.addChildNode(nodeBingkaiKanan)
+        sceneView.autoenablesDefaultLighting = true
+    }
+    
+    func setupWoodboard() {
+        let planeGeometry = SCNPlane(width: 4, height: 2)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "woodblock")
+        planeGeometry.materials = [material]
+        
+        let nodeWoodboard = SCNNode(geometry: planeGeometry)
+        nodeWoodboard.position = SCNVector3(6, -0.2, -0.8)
+        nodeWoodboard.rotation = SCNVector4Make(0, -1, 0, .pi/2)
+        sceneView.scene.rootNode.addChildNode(nodeWoodboard)
         sceneView.autoenablesDefaultLighting = true
     }
     
@@ -136,7 +150,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         nodeGrim.geometry = grim
         sceneView.scene.rootNode.addChildNode(nodeGrim)
         sceneView.autoenablesDefaultLighting = true
-
     }
     
     func setupFire1(){
@@ -165,14 +178,15 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupBrankas(){
-        let brankas = SCNText(string: "Brankas",extrusionDepth: 0)
-        brankas.materials = [SCNMaterial()]
         
-        let nodeBrankas = SCNNode()
-        nodeBrankas.position = SCNVector3(x : 5, y: -2, z : 1)
-        nodeBrankas.rotation = SCNVector4Make(0, 1, 0, .pi / 2)
-        nodeBrankas.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-        nodeBrankas.geometry = brankas
+        let planeGeometry = SCNPlane(width: 2, height: 2)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "safetybox_main")
+        planeGeometry.materials = [material]
+        
+        let nodeBrankas = SCNNode(geometry: planeGeometry)
+        nodeBrankas.position = SCNVector3(x: 5, y: -0.7, z : 2)
+        nodeBrankas.rotation = SCNVector4Make(0, -1, 0, .pi / 2)
         sceneView.scene.rootNode.addChildNode(nodeBrankas)
         sceneView.autoenablesDefaultLighting = true
     }
