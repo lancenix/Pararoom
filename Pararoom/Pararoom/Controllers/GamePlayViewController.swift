@@ -79,15 +79,19 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: Node setups
     func setupPortal(){
-        let portal = SCNText(string: "Portal",extrusionDepth: 0)
-        portal.materials = [SCNMaterial()]
-        
-        let nodePortal = SCNNode()
-        nodePortal.position = SCNVector3(x : -0.1, y: 0, z : -5)
-        nodePortal.scale = SCNVector3(x: 0.01, y: 0.01, z: 0.01)
-        nodePortal.geometry = portal
-        sceneView.scene.rootNode.addChildNode(nodePortal)
-        sceneView.autoenablesDefaultLighting = true
+          let planeGeometry = SCNPlane(width: 5, height: 10)
+                let material = SCNMaterial()
+                material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
+                planeGeometry.materials = [material]
+        //        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
+        //        youDontWant.materials = [SCNMaterial()]
+                
+                let nodePortal = SCNNode(geometry: planeGeometry)
+                nodePortal.position = SCNVector3(x : 0.1, y: 0.1, z : -5)
+//                nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
+                sceneView.scene.rootNode.addChildNode(nodePortal)
+                
+                sceneView.autoenablesDefaultLighting = true
     }
     
     func setupYouDontText(){
@@ -99,7 +103,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 //        youDontWant.materials = [SCNMaterial()]
         
         let nodeYouDont = SCNNode(geometry: planeGeometry)
-        nodeYouDont.position = SCNVector3(x : -0.1, y: 0.5, z : 5)
+        nodeYouDont.position = SCNVector3(x : 0.1, y: 0.1, z : 5)
         nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
         sceneView.scene.rootNode.addChildNode(nodeYouDont)
         
@@ -107,7 +111,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupBingkaiKiri(){
-        let planeGeometry = SCNPlane(width: 0.5, height: 0.5)
+        let planeGeometry = SCNPlane(width: 0.5, height: 1)
         let material = SCNMaterial()
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "frame question"))
         planeGeometry.materials = [material]
@@ -117,7 +121,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 //               planeGeometry.materials = [material]
 
                let bingkaiKiri = SCNNode(geometry: planeGeometry)
-               bingkaiKiri.position = SCNVector3(x : -1, y: 0.7, z : 0.4)
+               bingkaiKiri.position = SCNVector3(x : -1, y: 0.1, z : 0.1)
                bingkaiKiri.rotation = SCNVector4Make(0, -1, 0, .pi / -2)
                sceneView.scene.rootNode.addChildNode(bingkaiKiri)
                sceneView.autoenablesDefaultLighting = true
@@ -150,7 +154,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupGrim(){
-        let planeGeometry = SCNPlane(width: 500, height: 500)
+        let planeGeometry = SCNPlane(width: 500, height: 700)
         let material = SCNMaterial()
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "grimreaper"))
         planeGeometry.materials = [material]
@@ -159,7 +163,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 //
 //        let nodeGrim = SCNNode()
         let nodeGrim = SCNNode(geometry: planeGeometry)
-        nodeGrim.position = SCNVector3(x : -5, y: -1.5, z : 0.6)
+        nodeGrim.position = SCNVector3(x : -10, y: -1.5, z : 3)
         nodeGrim.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
         nodeGrim.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
 //        nodeGrim.geometry = grim
@@ -187,7 +191,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         planeGeometry.materials = [material]
         
         let FireKanan = SCNNode(geometry: planeGeometry)
-        FireKanan.position = SCNVector3(x : 1, y: 2.5, z : -5)
+        FireKanan.position = SCNVector3(x : 1.5, y: 3, z : -5)
         sceneView.scene.rootNode.addChildNode(FireKanan)
         sceneView.autoenablesDefaultLighting = true
     }
