@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755AF35248F7C9900CF2D95 /* AppDelegate.swift */; };
 		4755AF38248F7C9900CF2D95 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF37248F7C9900CF2D95 /* art.scnassets */; };
-		4755AF3A248F7C9900CF2D95 /* ViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755AF39248F7C9900CF2D95 /* ViewControllerr.swift */; };
 		4755AF3D248F7C9900CF2D95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF3B248F7C9900CF2D95 /* Main.storyboard */; };
 		4755AF3F248F7C9B00CF2D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF3E248F7C9B00CF2D95 /* Assets.xcassets */; };
 		4755AF42248F7C9B00CF2D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF40248F7C9B00CF2D95 /* LaunchScreen.storyboard */; };
@@ -24,7 +23,6 @@
 		4755AF32248F7C9900CF2D95 /* Pararoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pararoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4755AF35248F7C9900CF2D95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4755AF37248F7C9900CF2D95 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		4755AF39248F7C9900CF2D95 /* ViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerr.swift; sourceTree = "<group>"; };
 		4755AF3C248F7C9900CF2D95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4755AF3E248F7C9B00CF2D95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4755AF41248F7C9B00CF2D95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +45,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		472B718D249161B100110BE1 /* GIF Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EAA197AD2490F9630072375E /* gameBg.gif */,
+				EAA197AF2490F96C0072375E /* FireballARemake.gif */,
+			);
+			path = "GIF Assets";
+			sourceTree = "<group>";
+		};
+		472B718E2491620100110BE1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EAA197952490CC2D0072375E /* GifImageExtension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		472B718F2491621B00110BE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4755AF3B248F7C9900CF2D95 /* Main.storyboard */,
+				4755AF40248F7C9B00CF2D95 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		472B71902491622D00110BE1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAA1978B2490ABF20072375E /* MainMenuViewController.swift */,
+				EAA197B3249105200072375E /* GamePlayViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		4755AF29248F7C9900CF2D95 = {
 			isa = PBXGroup;
 			children = (
@@ -66,18 +99,14 @@
 		4755AF34248F7C9900CF2D95 /* Pararoom */ = {
 			isa = PBXGroup;
 			children = (
+				472B71902491622D00110BE1 /* Controllers */,
+				472B718F2491621B00110BE1 /* View */,
+				472B718E2491620100110BE1 /* Helpers */,
+				472B718D249161B100110BE1 /* GIF Assets */,
 				4755AF35248F7C9900CF2D95 /* AppDelegate.swift */,
-				EAA197AD2490F9630072375E /* gameBg.gif */,
-				EAA197AF2490F96C0072375E /* FireballARemake.gif */,
 				4755AF37248F7C9900CF2D95 /* art.scnassets */,
-				4755AF39248F7C9900CF2D95 /* ViewControllerr.swift */,
-				4755AF3B248F7C9900CF2D95 /* Main.storyboard */,
-				EAA1978B2490ABF20072375E /* MainMenuViewController.swift */,
-				EAA197952490CC2D0072375E /* GifImageExtension.swift */,
 				4755AF3E248F7C9B00CF2D95 /* Assets.xcassets */,
-				4755AF40248F7C9B00CF2D95 /* LaunchScreen.storyboard */,
 				4755AF43248F7C9B00CF2D95 /* Info.plist */,
-				EAA197B3249105200072375E /* GamePlayViewController.swift */,
 			);
 			path = Pararoom;
 			sourceTree = "<group>";
@@ -157,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */,
-				4755AF3A248F7C9900CF2D95 /* ViewControllerr.swift in Sources */,
 				EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */,
 				EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */,
 				4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */,
@@ -305,7 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WU2B466A8A;
+				DEVELOPMENT_TEAM = 64D4KPKN55;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -323,7 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WU2B466A8A;
+				DEVELOPMENT_TEAM = 64D4KPKN55;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
