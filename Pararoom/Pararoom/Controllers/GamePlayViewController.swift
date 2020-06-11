@@ -39,6 +39,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     var takeHammerFlag = 0
     var hammerIsSelected = false
     private var flagPin = false
+    private var showPainting = false
     
     private let corretPIN = "34373"
     
@@ -80,6 +81,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         PINChoicesCollectionView.isHidden = true
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
+        showPainting = false
+        print(showPainting)
     }
     
     @IBAction func enterPINAlert(_ sender: Any) {
@@ -133,7 +136,16 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         let hitResults = sceneView.hitTest(touchLocation, options: [:])
         
         if !hitResults.isEmpty {
+            let woodImage = UIImageView(frame: CGRect(x: 35, y: 142, width: 339, height: 170))
+            woodImage.tag = 100
+            
+            if !showPainting {
+                if let viewWithTag = self.view.viewWithTag(100) {
+                    viewWithTag.removeFromSuperview()
+                }
+            }
             if hitResults.first?.node.name == "nodeBrangkas" {
+                
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
                 NodeInteractionView.isHidden = false
                 PINChoicesCollectionView.isHidden = false
@@ -147,9 +159,9 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
             else if hitResults.first?.node.name == "nodePainting"{
-                
+                showPainting = true
                 ZoomedNodeImage.image = UIImage(named: "painting_wood")
-                let woodImage = UIImageView(frame: CGRect(x: 35, y: 142, width: 339, height: 170))
+                
                 woodImage.image = UIImage(named: "woodblock")
                 
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
