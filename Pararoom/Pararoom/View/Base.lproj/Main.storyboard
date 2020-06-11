@@ -195,7 +195,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owh-Tx-Bu1">
-                                                    <rect key="frame" x="8" y="8" width="78" height="62"/>
+                                                    <rect key="frame" x="13" y="12" width="66" height="57"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -239,10 +239,26 @@
                                             <action selector="tapHammer:" destination="abv-5q-nIE" eventType="touchUpInside" id="lfo-4f-P60"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvj-9b-13Z">
+                                        <rect key="frame" x="0.0" y="183" width="374" height="178"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="woodblock"/>
+                                        <connections>
+                                            <action selector="woodPressed:" destination="abv-5q-nIE" eventType="touchUpInside" id="dfB-J4-l0P"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="run-aZ-RhC">
+                                        <rect key="frame" x="118" y="300" width="79" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="soul_fragment"/>
+                                        <connections>
+                                            <action selector="takeSoulFragment:" destination="abv-5q-nIE" eventType="touchUpInside" id="EdV-rP-I78"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This safety box needs a PIN for   it to be opened. What is it?" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-n6-Pt6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This safety box needs a PIN for   it to be opened. What is it?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-n6-Pt6">
                                 <rect key="frame" x="37" y="567" width="339" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
@@ -321,6 +337,7 @@
                         <outlet property="ZoomedNodeImage" destination="3yb-1z-5K5" id="eXH-SU-Xeg"/>
                         <outlet property="contentLabel" destination="jOS-eq-oQG" id="FWj-8X-e7B"/>
                         <outlet property="enterPINButton" destination="yAl-wV-ivf" id="qBO-2c-nha"/>
+                        <outlet property="hammerButton" destination="cjF-aC-Z9m" id="cUp-ma-xCv"/>
                         <outlet property="inventoryCollectionView" destination="dzA-ue-7H4" id="c98-O4-ycJ"/>
                         <outlet property="nextButton" destination="zXj-lp-vx5" id="8XW-M0-ZCi"/>
                         <outlet property="nextButtonImage" destination="gUD-Xv-dvN" id="Z6Z-5D-flh"/>
@@ -331,7 +348,8 @@
                         <outlet property="prevButtonImage" destination="37T-gI-TGN" id="DD6-tn-sfr"/>
                         <outlet property="recommendationViewContainer" destination="4d6-xl-aVy" id="UgI-pm-4Aw"/>
                         <outlet property="sceneView" destination="F2S-NT-Wu7" id="LRn-MH-Ye9"/>
-                        <outlet property="soulFragment" destination="cjF-aC-Z9m" id="cUp-ma-xCv"/>
+                        <outlet property="soulFragment" destination="run-aZ-RhC" id="2n8-Kj-MxN"/>
+                        <outlet property="woodImage" destination="jvj-9b-13Z" id="N5F-n9-UK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-3l-eWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -352,5 +370,7 @@
         <image name="inventory" width="945" height="2008"/>
         <image name="overlayfixpng" width="1181" height="2362"/>
         <image name="playButton copy" width="2000" height="894"/>
+        <image name="soul_fragment" width="3308" height="2480"/>
+        <image name="woodblock" width="1916" height="782"/>
     </resources>
 </document>
