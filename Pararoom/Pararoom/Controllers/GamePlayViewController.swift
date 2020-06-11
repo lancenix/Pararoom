@@ -23,6 +23,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var inventoryCollectionView: UICollectionView!
     
     var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
         
@@ -52,6 +53,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         
         npcImage.loadGif(name: "FireballARemake")
         contentLabel.text = convArray[0]
+        
+        inventoryCollectionView.isHidden = true
         
         prevButtonHidden()
     }
@@ -219,6 +222,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
              prevButtonHiddenFalse()
          }else if contentLabel.text == convArray[3]{
              npcViewController.isHidden = true
+            inventoryCollectionView.isHidden = false
          }
     }
     
@@ -236,3 +240,16 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
+extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
+        
+        return cell
+    }
+
+}
