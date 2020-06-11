@@ -24,14 +24,20 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var inventoryCollectionView: UICollectionView!
+    @IBOutlet weak var PINChoicesCollectionView: UICollectionView!
+    @IBOutlet weak var ZoomedNodeImage: UIImageView!
+    @IBOutlet weak var nodeInteractionMessage: UILabel!
+    @IBOutlet weak var NodeInteractionView: UIView!
+    
     
     var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
-        
+    var pinChoices = ["33321", "34373", "28832"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
+        
         
         setupPortal()
         setupYouDontText()
@@ -46,8 +52,15 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         viewSetup()
+        
         registerGestureRecognizers()
     }
+    
+    
+    @IBAction func hideNodeInteractionView(_ sender: Any) {
+        NodeInteractionView.isHidden = true
+    }
+    
     
     private func registerGestureRecognizers() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -61,7 +74,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         
         if !hitResults.isEmpty {
             if hitResults.first?.node.name == "nodeBrangkas" {
-                print("click brangkas")
+                ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
+                NodeInteractionView.isHidden = false
             }
         }
     }
@@ -74,6 +88,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         contentLabel.text = convArray[0]
         
         inventoryCollectionView.isHidden = true
+        NodeInteractionView.isHidden = true
+        PINChoicesCollectionView.backgroundColor = .clear
         
         prevButtonHidden()
     }
@@ -175,6 +191,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         nodeWoodboard.position = SCNVector3(6, -0.2, -0.8)
         nodeWoodboard.rotation = SCNVector4Make(0, -1, 0, .pi/2)
         sceneView.scene.rootNode.addChildNode(nodeWoodboard)
+        
         sceneView.autoenablesDefaultLighting = true
     }
     
@@ -283,6 +300,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
+//MARK: CollectionView Extensions
 extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -290,9 +308,16 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
-        
-        return cell
+        if collectionView == inventoryCollectionView {
+            let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
+            
+            return cellA
+        }
+        else {
+            let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "pinChoicesCell", for: indexPath) as! PINChoicesCollectionViewCell
+            cellB.PINLabel.text = pinChoices[indexPath.row]
+            cellB.layer.cornerRadius = 10.0
+            return cellB
+        }
     }
-
 }

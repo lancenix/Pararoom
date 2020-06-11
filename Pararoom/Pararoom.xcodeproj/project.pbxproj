@@ -12,12 +12,13 @@
 		4755AF3D248F7C9900CF2D95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF3B248F7C9900CF2D95 /* Main.storyboard */; };
 		4755AF3F248F7C9B00CF2D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF3E248F7C9B00CF2D95 /* Assets.xcassets */; };
 		4755AF42248F7C9B00CF2D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF40248F7C9B00CF2D95 /* LaunchScreen.storyboard */; };
+		4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */; };
+		4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */; };
 		EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1978B2490ABF20072375E /* MainMenuViewController.swift */; };
 		EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197952490CC2D0072375E /* GifImageExtension.swift */; };
 		EAA197AE2490F9630072375E /* gameBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AD2490F9630072375E /* gameBg.gif */; };
 		EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AF2490F96C0072375E /* FireballARemake.gif */; };
 		EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197B3249105200072375E /* GamePlayViewController.swift */; };
-		EAA197BB2491DD8A0072375E /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197BA2491DD8A0072375E /* InventoryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +29,13 @@
 		4755AF3E248F7C9B00CF2D95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4755AF41248F7C9B00CF2D95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4755AF43248F7C9B00CF2D95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINChoicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA1978B2490ABF20072375E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		EAA197952490CC2D0072375E /* GifImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageExtension.swift; sourceTree = "<group>"; };
 		EAA197AD2490F9630072375E /* gameBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBg.gif; sourceTree = "<group>"; };
 		EAA197AF2490F96C0072375E /* FireballARemake.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballARemake.gif; sourceTree = "<group>"; };
 		EAA197B3249105200072375E /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
-		EAA197BA2491DD8A0072375E /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +119,8 @@
 		EAA197B92491DC880072375E /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				EAA197BA2491DD8A0072375E /* InventoryCollectionViewCell.swift */,
+				4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */,
+				4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -199,7 +202,8 @@
 				EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */,
 				EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */,
 				EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */,
-				EAA197BB2491DD8A0072375E /* InventoryCollectionViewCell.swift in Sources */,
+				4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */,
+				4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */,
 				4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
