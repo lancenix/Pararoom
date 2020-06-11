@@ -14,6 +14,7 @@
 		4755AF42248F7C9B00CF2D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4755AF40248F7C9B00CF2D95 /* LaunchScreen.storyboard */; };
 		4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */; };
 		4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */; };
+		4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A831249254C600171937 /* CustomAlertViewController.swift */; };
 		EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1978B2490ABF20072375E /* MainMenuViewController.swift */; };
 		EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197952490CC2D0072375E /* GifImageExtension.swift */; };
 		EAA197AE2490F9630072375E /* gameBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AD2490F9630072375E /* gameBg.gif */; };
@@ -31,6 +32,7 @@
 		4755AF43248F7C9B00CF2D95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINChoicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		4783A831249254C600171937 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		EAA1978B2490ABF20072375E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		EAA197952490CC2D0072375E /* GifImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageExtension.swift; sourceTree = "<group>"; };
 		EAA197AD2490F9630072375E /* gameBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBg.gif; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				EAA1978B2490ABF20072375E /* MainMenuViewController.swift */,
 				EAA197B3249105200072375E /* GamePlayViewController.swift */,
+				4783A831249254C600171937 /* CustomAlertViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */,
 				4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */,
 				4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */,
+				4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */,
 				4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +383,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mjee.Pararoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

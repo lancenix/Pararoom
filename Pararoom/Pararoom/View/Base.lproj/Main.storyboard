@@ -61,7 +61,7 @@
                                         <rect key="frame" x="110" y="278" width="204" height="202"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvJ-LX-riN">
@@ -75,7 +75,7 @@
                                         <rect key="frame" x="109" y="722" width="204" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="12"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -177,21 +177,21 @@
                                 <rect key="frame" x="55" y="790" width="303" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3ne-CY-lPv">
-                                    <size key="itemSize" width="94" height="78"/>
+                                    <size key="itemSize" width="94" height="79"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="inventoryCell" id="zy3-Ae-jS1" customClass="InventoryCollectionViewCell" customModule="Pararoom" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="78"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="94" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oP1-Oy-PxU">
-                                            <rect key="frame" x="0.0" y="0.0" width="94" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="94" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="inventory" translatesAutoresizingMaskIntoConstraints="NO" id="57X-5f-5Un">
-                                                    <rect key="frame" x="-155" y="-376" width="404" height="696"/>
+                                                    <rect key="frame" x="-126" y="-326" width="344" height="614"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owh-Tx-Bu1">
@@ -200,7 +200,7 @@
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="94" height="78"/>
+                                        <size key="customSize" width="94" height="79"/>
                                         <connections>
                                             <outlet property="inventoryFrame" destination="57X-5f-5Un" id="N1M-xv-om3"/>
                                             <outlet property="item" destination="owh-Tx-Bu1" id="flk-wz-8Hl"/>
@@ -217,61 +217,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3yb-1z-5K5">
-                                        <rect key="frame" x="0.0" y="46" width="339" height="437"/>
+                                        <rect key="frame" x="-38" y="46" width="415" height="437"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This safety box needs a PIN for   it to be opened. What is it?" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-n6-Pt6">
-                                        <rect key="frame" x="0.0" y="482" width="339" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="0.0" height="2"/>
-                                    </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LsX-v5-RAr">
-                                        <rect key="frame" x="18" y="561" width="303" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="ehk-GR-qdj">
-                                            <size key="itemSize" width="95" height="55"/>
-                                            <size key="estimatedItemSize" width="95" height="55"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pinChoicesCell" id="MXr-t7-7JM" customClass="PINChoicesCollectionViewCell" customModule="Pararoom" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="95" height="55"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eff-fB-nX8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="55"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6b-aD-WNJ">
-                                                            <rect key="frame" x="-18" y="18" width="131" height="19"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="131" id="7er-Be-RJc"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="D6b-aD-WNJ" firstAttribute="centerX" secondItem="Eff-fB-nX8" secondAttribute="centerX" id="JNH-1U-q6h"/>
-                                                        <constraint firstItem="D6b-aD-WNJ" firstAttribute="centerY" secondItem="Eff-fB-nX8" secondAttribute="centerY" id="XNy-FE-2sC"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <outlet property="PINLabel" destination="D6b-aD-WNJ" id="zOr-mU-6xZ"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="abv-5q-nIE" id="wrh-Yq-FMi"/>
-                                            <outlet property="delegate" destination="abv-5q-nIE" id="2Ff-j0-Anf"/>
-                                        </connections>
-                                    </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-KA-58B">
                                         <rect key="frame" x="294" y="-3" width="37" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -283,12 +231,88 @@
                                             <action selector="hideNodeInteractionView:" destination="abv-5q-nIE" eventType="touchUpInside" id="Y9v-pg-LlU"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjF-aC-Z9m">
+                                        <rect key="frame" x="53" y="193" width="162" height="156"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="hammer"/>
+                                        <connections>
+                                            <action selector="tapHammer:" destination="abv-5q-nIE" eventType="touchUpInside" id="lfo-4f-P60"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This safety box needs a PIN for   it to be opened. What is it?" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-n6-Pt6">
+                                <rect key="frame" x="37" y="567" width="339" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="2"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAl-wV-ivf">
+                                <rect key="frame" x="161" y="679" width="101" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Enter PIN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="enterPINAlert:" destination="abv-5q-nIE" eventType="touchUpInside" id="yYW-o0-ROr"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LsX-v5-RAr">
+                                <rect key="frame" x="55" y="678" width="303" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="ehk-GR-qdj">
+                                    <size key="itemSize" width="95" height="55"/>
+                                    <size key="estimatedItemSize" width="95" height="55"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pinChoicesCell" id="MXr-t7-7JM" customClass="PINChoicesCollectionViewCell" customModule="Pararoom" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eff-fB-nX8">
+                                            <rect key="frame" x="0.0" y="0.0" width="95" height="55"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6b-aD-WNJ">
+                                                    <rect key="frame" x="-18" y="18" width="131" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="131" id="7er-Be-RJc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="D6b-aD-WNJ" firstAttribute="centerX" secondItem="Eff-fB-nX8" secondAttribute="centerX" id="JNH-1U-q6h"/>
+                                                <constraint firstItem="D6b-aD-WNJ" firstAttribute="centerY" secondItem="Eff-fB-nX8" secondAttribute="centerY" id="XNy-FE-2sC"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="PINLabel" destination="D6b-aD-WNJ" id="zOr-mU-6xZ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="abv-5q-nIE" id="wrh-Yq-FMi"/>
+                                    <outlet property="delegate" destination="abv-5q-nIE" id="2Ff-j0-Anf"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Fci-vS-EiB"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="LsX-v5-RAr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="oEd-2P-eoi"/>
                     <connections>
@@ -296,6 +320,7 @@
                         <outlet property="PINChoicesCollectionView" destination="LsX-v5-RAr" id="i9g-73-DmK"/>
                         <outlet property="ZoomedNodeImage" destination="3yb-1z-5K5" id="eXH-SU-Xeg"/>
                         <outlet property="contentLabel" destination="jOS-eq-oQG" id="FWj-8X-e7B"/>
+                        <outlet property="enterPINButton" destination="yAl-wV-ivf" id="qBO-2c-nha"/>
                         <outlet property="inventoryCollectionView" destination="dzA-ue-7H4" id="c98-O4-ycJ"/>
                         <outlet property="nextButton" destination="zXj-lp-vx5" id="8XW-M0-ZCi"/>
                         <outlet property="nextButtonImage" destination="gUD-Xv-dvN" id="Z6Z-5D-flh"/>
@@ -306,6 +331,7 @@
                         <outlet property="prevButtonImage" destination="37T-gI-TGN" id="DD6-tn-sfr"/>
                         <outlet property="recommendationViewContainer" destination="4d6-xl-aVy" id="UgI-pm-4Aw"/>
                         <outlet property="sceneView" destination="F2S-NT-Wu7" id="LRn-MH-Ye9"/>
+                        <outlet property="soulFragment" destination="cjF-aC-Z9m" id="cUp-ma-xCv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-3l-eWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -322,6 +348,7 @@
         <image name="epsButton" width="1778" height="815"/>
         <image name="for your best" width="945" height="2008"/>
         <image name="game title caps" width="2480" height="1698"/>
+        <image name="hammer" width="2480" height="2480"/>
         <image name="inventory" width="945" height="2008"/>
         <image name="overlayfixpng" width="1181" height="2362"/>
         <image name="playButton copy" width="2000" height="894"/>
