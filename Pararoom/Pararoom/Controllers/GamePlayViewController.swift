@@ -104,16 +104,16 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupBingkaiKiri(){
-        let bingkaiKiri = SCNText(string: "Bingkai Kiri",extrusionDepth: 0)
-        bingkaiKiri.materials = [SCNMaterial()]
-        
-        let nodeBingkaiKiri = SCNNode()
-        nodeBingkaiKiri.position = SCNVector3(x : -5, y: 1.5, z : -0.6)
-        nodeBingkaiKiri.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
-        nodeBingkaiKiri.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-        nodeBingkaiKiri.geometry = bingkaiKiri
-        sceneView.scene.rootNode.addChildNode(nodeBingkaiKiri)
-        sceneView.autoenablesDefaultLighting = true
+         let planeGeometry = SCNPlane(width: 15, height: 15)
+               let material = SCNMaterial()
+               material.diffuse.contents = UIImage(named: "frame question")
+               planeGeometry.materials = [material]
+
+               let bingkaiKiri = SCNNode(geometry: planeGeometry)
+               bingkaiKiri.position = SCNVector3(x : -5, y: 1.5, z : 2)
+               bingkaiKiri.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
+               sceneView.scene.rootNode.addChildNode(bingkaiKiri)
+               sceneView.autoenablesDefaultLighting = true
     }
     
     func setupBingkaiKanan(){
