@@ -27,6 +27,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
         
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +46,24 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         viewSetup()
+        registerGestureRecognizers()
+    }
+    
+    private func registerGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func tapped(recognizer :UITapGestureRecognizer) {
+        let sceneView = recognizer.view as! ARSCNView
+        let touchLocation = recognizer.location(in: sceneView)
+        let hitResults = sceneView.hitTest(touchLocation, options: [:])
+        
+        if !hitResults.isEmpty {
+            if hitResults.first?.node.name == "nodeBrangkas" {
+                print("click brangkas")
+            }
+        }
     }
     
     func viewSetup() {
@@ -79,6 +98,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: Node setups
     func setupPortal(){
+
           let planeGeometry = SCNPlane(width: 5, height: 10)
                 let material = SCNMaterial()
                 material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
@@ -111,6 +131,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupBingkaiKiri(){
+
         let planeGeometry = SCNPlane(width: 0.5, height: 1)
         let material = SCNMaterial()
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "frame question"))
@@ -134,6 +155,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         planeGeometry.materials = [material]
         
         let nodeBingkaiKanan = SCNNode(geometry: planeGeometry)
+        nodeBingkaiKanan.name = "nodeBingkaiKanan"
+        
         nodeBingkaiKanan.position = SCNVector3(x : 7, y: 0, z : -1)
         nodeBingkaiKanan.rotation = SCNVector4Make(0, -1, 0, .pi/2)
         sceneView.scene.rootNode.addChildNode(nodeBingkaiKanan)
@@ -147,6 +170,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         planeGeometry.materials = [material]
         
         let nodeWoodboard = SCNNode(geometry: planeGeometry)
+        nodeWoodboard.name = "nodeWoodboard"
+        
         nodeWoodboard.position = SCNVector3(6, -0.2, -0.8)
         nodeWoodboard.rotation = SCNVector4Make(0, -1, 0, .pi/2)
         sceneView.scene.rootNode.addChildNode(nodeWoodboard)
@@ -204,6 +229,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         planeGeometry.materials = [material]
         
         let nodeBrankas = SCNNode(geometry: planeGeometry)
+        nodeBrankas.name = "nodeBrangkas"
+        
         nodeBrankas.position = SCNVector3(x: 5, y: -0.7, z : 2)
         nodeBrankas.rotation = SCNVector4Make(0, -1, 0, .pi / 2)
         sceneView.scene.rootNode.addChildNode(nodeBrankas)
