@@ -104,6 +104,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupBingkaiKiri(){
+//        let planeGeometry = SCNPlane(width: 1500, height: 1500)
+//        let material = SCNMaterial()
+//        material.diffuse.contents = UIImage(named: "answer")
+//        planeGeometry.materials = [material]
          let planeGeometry = SCNPlane(width: 15, height: 15)
                let material = SCNMaterial()
                material.diffuse.contents = UIImage(named: "frame question")
@@ -143,14 +147,19 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupGrim(){
-        let grim = SCNText(string: "grim",extrusionDepth: 0)
-        grim.materials = [SCNMaterial()]
-        
-        let nodeGrim = SCNNode()
+        let planeGeometry = SCNPlane(width: 500, height: 500)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "grimreaper"))
+        planeGeometry.materials = [material]
+//        let grim = SCNText(string: "grim",extrusionDepth: 0)
+//        grim.materials = [SCNMaterial()]
+//
+//        let nodeGrim = SCNNode()
+        let nodeGrim = SCNNode(geometry: planeGeometry)
         nodeGrim.position = SCNVector3(x : -5, y: -1.5, z : 0.6)
         nodeGrim.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
         nodeGrim.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-        nodeGrim.geometry = grim
+//        nodeGrim.geometry = grim
         sceneView.scene.rootNode.addChildNode(nodeGrim)
         sceneView.autoenablesDefaultLighting = true
     }
