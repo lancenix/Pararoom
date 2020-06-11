@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import CoreMotion
 
 class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
@@ -31,6 +32,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var NodeInteractionView: UIView!
     @IBOutlet weak var enterPINButton: UIButton!
     
+    @IBOutlet weak var labelFrameKiri: UILabel!
+    
     
     @IBOutlet weak var soulFragment: UIButton!
     
@@ -44,10 +47,13 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     private let corretPIN = "34373"
     
     var inventoryItem : [String] = ["", "", ""]
-    let pinChoices = ["33321", "34373", "28832"]
+    let pinChoices = ["Heart", "Soul", "Fire"]
     
     let nodeBrankas = SCNNode()
     let nodeWoodboard = SCNNode()
+    let nodeGrim = SCNNode()
+    
+    var gerakFrameKiri = true
     
     
     override func viewDidLoad() {
@@ -78,10 +84,14 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func hideNodeInteractionView(_ sender: Any) {
         NodeInteractionView.isHidden = true
         
+        showPainting = false
         PINChoicesCollectionView.isHidden = true
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
-        showPainting = false
+        labelFrameKiri.isHidden = true
+        
+        
+        
         print(showPainting)
     }
     
@@ -148,7 +158,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
                 NodeInteractionView.isHidden = false
-                PINChoicesCollectionView.isHidden = false
+//                PINChoicesCollectionView.isHidden = false
                 nodeInteractionMessage.isHidden = false
                 
                 if takeHammerFlag == 1 {
@@ -169,6 +179,77 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 woodImage.addGestureRecognizer(tapGestureRecognizer)
                 
                 ZoomedNodeImage.addSubview(woodImage)
+                NodeInteractionView.isHidden = false
+            }
+            else if hitResults.first?.node.name == "grimRiper"{
+                ZoomedNodeImage.image = UIImage(named: "grimreaper")
+                
+                NodeInteractionView.isHidden = false
+                PINChoicesCollectionView.isHidden = false
+                PINChoicesCollectionView.isHidden = false
+                nodeInteractionMessage.isHidden = false
+                
+                nodeInteractionMessage.text = "What are the thing that you need?"
+                
+                
+                
+            }
+                
+                else if hitResults.first?.node.name == "frameKiri"{
+                
+                ZoomedNodeImage.image = UIImage(named: "frame question")
+                
+                let interval = 0.01
+                let manager = CMMotionManager()
+//                let frameKiriWidth = CGFloat(400)
+//                let frameKiriHeight = CGFloat(600)
+               
+               
+                manager.deviceMotionUpdateInterval = interval
+                let queue = OperationQueue()
+                                
+                manager.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
+                guard let data = data else { return }
+                guard manager.isDeviceMotionAvailable else { return }
+                let gravity = data.gravity
+                    let rotation = atan2(gravity.x, gravity.y) - .pi
+                    
+                    
+                    
+//                                    if data.attitude.roll >= 1.39 && data.attitude.roll <= 1.61 || data.attitude.roll >= -1.61 && data.attitude.roll <= -1.39{
+////                                        self.showPass()
+//
+//                                    }
+//
+
+                    OperationQueue.main.addOperation {
+                        self.ZoomedNodeImage?.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
+                    }
+                })
+                
+                
+
+                
+                
+//                func SetImageView() {
+//                    if !gerakFrameKiri { return }
+//
+//                let iv = ZoomedNodeImage
+//
+//
+//                // center the image
+//                let x = (self.view.frame.width/2)-(frameKiriWidth/2)
+//                let y = (self.view.frame.height/2)-(frameKiriHeight/2)
+//                    iv?.frame = CGRect(x: x, y: y, width: frameKiriWidth, height: frameKiriHeight)
+//
+//                self.view.addSubview(iv!)
+//                self.ZoomedNodeImage = iv
+//
+//
+//                           }
+//                 SetImageView()
+                
+                              
                 NodeInteractionView.isHidden = false
             }
             else{
@@ -209,6 +290,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         PINChoicesCollectionView.isHidden = true
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
+        labelFrameKiri.isHidden = true
         
         soulFragment.isHidden = true
         prevButtonHidden()
@@ -259,7 +341,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 //        youDontWant.materials = [SCNMaterial()]
         
         let nodeYouDont = SCNNode(geometry: planeGeometry)
-        nodeYouDont.position = SCNVector3(x : 0.1, y: 0.1, z : 5)
+        nodeYouDont.position = SCNVector3(x : 0.1, y: 0.1, z : 8)
         nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
         sceneView.scene.rootNode.addChildNode(nodeYouDont)
         
@@ -287,8 +369,13 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 //               planeGeometry.materials = [material]
 
                let bingkaiKiri = SCNNode(geometry: planeGeometry)
-               bingkaiKiri.position = SCNVector3(x : -1, y: 0.1, z : 0.1)
+        bingkaiKiri.name = "frameKiri"
+        bingkaiKiri.position = SCNVector3(x : -3.5, y: 0.1, z : 0.1)
                bingkaiKiri.rotation = SCNVector4Make(0, -1, 0, .pi / -2)
+        
+        
+       
+        
                sceneView.scene.rootNode.addChildNode(bingkaiKiri)
                sceneView.autoenablesDefaultLighting = true
     }
@@ -331,12 +418,14 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         let material = SCNMaterial()
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "grimreaper"))
         planeGeometry.materials = [material]
+        
 //        let grim = SCNText(string: "grim",extrusionDepth: 0)
 //        grim.materials = [SCNMaterial()]
 //
 //        let nodeGrim = SCNNode()
-        let nodeGrim = SCNNode(geometry: planeGeometry)
-        nodeGrim.position = SCNVector3(x : -10, y: -1.5, z : 3)
+        nodeGrim.geometry = planeGeometry
+        nodeGrim.name = "grimRiper"
+        nodeGrim.position = SCNVector3(x : -3, y: -1.5, z : -1)
         nodeGrim.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
         nodeGrim.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
 //        nodeGrim.geometry = grim
@@ -465,6 +554,14 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                 hammerIsSelected = true
             }
         }
+        else if collectionView == PINChoicesCollectionView{
+            let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
+            selectedCell.contentView.backgroundColor = .brown
+            if indexPath.row == 1 {
+                nodeGrim.isHidden = true
+                nodeInteractionMessage.text = "I hope you can escape."
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -472,7 +569,15 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
             selectedCell.contentView.backgroundColor = .clear
         }
+        else if collectionView == PINChoicesCollectionView{
+        let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
+        selectedCell.contentView.backgroundColor = .white
+        }
     }
+    
+//    func showPass() {
+//        self.labelFrameKiri.isHidden = false
+//    }
     
     @IBAction func tapHammer(_ sender: Any) {
         soulFragment.isHidden = true
