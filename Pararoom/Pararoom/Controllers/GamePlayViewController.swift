@@ -26,18 +26,33 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var inventoryCollectionView: UICollectionView!
     @IBOutlet weak var PINChoicesCollectionView: UICollectionView!
     @IBOutlet weak var ZoomedNodeImage: UIImageView!
+    
     @IBOutlet weak var nodeInteractionMessage: UILabel!
     @IBOutlet weak var NodeInteractionView: UIView!
+    @IBOutlet weak var enterPINButton: UIButton!
     
+    
+    @IBOutlet weak var soulFragment: UIButton!
     
     var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
-    var pinChoices = ["33321", "34373", "28832"]
+    
+    var takeHammerFlag = 0
+    var hammerIsSelected = false
+    private var flagPin = false
+    
+    private let corretPIN = "34373"
+    
+    var inventoryItem : [String] = ["", "", ""]
+    let pinChoices = ["33321", "34373", "28832"]
+    
+    let nodeBrankas = SCNNode()
+    let nodeWoodboard = SCNNode()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
-        
         
         setupPortal()
         setupYouDontText()
@@ -53,14 +68,59 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         viewSetup()
         
+        
+        
         registerGestureRecognizers()
     }
     
     
     @IBAction func hideNodeInteractionView(_ sender: Any) {
         NodeInteractionView.isHidden = true
+        
+        PINChoicesCollectionView.isHidden = true
+        nodeInteractionMessage.isHidden = true
+        enterPINButton.isHidden = true
     }
     
+    @IBAction func enterPINAlert(_ sender: Any) {
+        let alertController = UIAlertController(title: "Enter PIN", message: nil, preferredStyle: .alert)
+                
+        //Setup actions
+        let addAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+        
+            guard let PIN = alertController.textFields?.first?.text else {return}
+            if PIN == self.corretPIN {
+                self.openSafetyBox()
+            }
+        }
+                    
+        addAction.isEnabled = false
+                
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Enter the safe's PIN"
+            textField.keyboardType = .numberPad
+            textField.addTarget(self, action: #selector(self.handleTextChanged), for: .editingChanged)
+        })
+        
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+            
+        present(alertController, animated: true)
+    }
+    
+    @objc private func handleTextChanged(_ sender: UITextField) {
+        
+        guard let alertController = presentedViewController as? UIAlertController,
+            let addAction = alertController.actions.first,
+            let text = sender.text
+            
+            else { return }
+        
+        addAction.isEnabled = !text.trimmingCharacters(in: .whitespaces).isEmpty
+        
+    }
     
     private func registerGestureRecognizers() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -76,8 +136,52 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             if hitResults.first?.node.name == "nodeBrangkas" {
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
                 NodeInteractionView.isHidden = false
+                PINChoicesCollectionView.isHidden = false
+                nodeInteractionMessage.isHidden = false
+                
+                if takeHammerFlag == 1 {
+                    enterPINButton.isHidden = true
+                }
+                else {
+                    enterPINButton.isHidden = false
+                }
+            }
+            else if hitResults.first?.node.name == "nodePainting"{
+                
+                ZoomedNodeImage.image = UIImage(named: "painting_wood")
+                let woodImage = UIImageView(frame: CGRect(x: 35, y: 142, width: 339, height: 170))
+                woodImage.image = UIImage(named: "woodblock")
+                
+                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+                woodImage.isUserInteractionEnabled = true
+                woodImage.addGestureRecognizer(tapGestureRecognizer)
+                
+                ZoomedNodeImage.addSubview(woodImage)
+                NodeInteractionView.isHidden = false
+            }
+            else{
+                ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
+                NodeInteractionView.isHidden = false
             }
         }
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        if hammerIsSelected{
+            nodeWoodboard.isHidden
+             = true
+            print("true")
+        }
+        
+    }
+    
+    func openSafetyBox(){
+        nodeBrankas.geometry?.materials.first?.diffuse.contents = UIImage(named: "safetybox_open")
+        ZoomedNodeImage.image = UIImage(named: "safetybox_open")
+        soulFragment.isHidden = false
     }
     
     func viewSetup() {
@@ -90,7 +194,11 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         inventoryCollectionView.isHidden = true
         NodeInteractionView.isHidden = true
         PINChoicesCollectionView.backgroundColor = .clear
+        PINChoicesCollectionView.isHidden = true
+        nodeInteractionMessage.isHidden = true
+        enterPINButton.isHidden = true
         
+        soulFragment.isHidden = true
         prevButtonHidden()
     }
     
@@ -140,6 +248,15 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         sceneView.autoenablesDefaultLighting = true
     }
     
+    func setupSoulFragment(){
+        let planeGeometry = SCNPlane(width: 5, height: 5)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "soul_fragment")
+        planeGeometry.materials = [material]
+        
+        
+    }
+    
     func setupBingkaiKiri(){
         let bingkaiKiri = SCNText(string: "Bingkai Kiri",extrusionDepth: 0)
         bingkaiKiri.materials = [SCNMaterial()]
@@ -162,12 +279,14 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         planeGeometry.materials = [material]
         
         let nodeBingkaiKanan = SCNNode(geometry: planeGeometry)
-        nodeBingkaiKanan.name = "nodeBingkaiKanan"
+        nodeBingkaiKanan.name = "nodePainting"
         
-        nodeBingkaiKanan.position = SCNVector3(x : 7, y: 0, z : -1)
+        nodeBingkaiKanan.position = SCNVector3(x : 10, y: 0, z : -1)
         nodeBingkaiKanan.rotation = SCNVector4Make(0, -1, 0, .pi/2)
+        
         sceneView.scene.rootNode.addChildNode(nodeBingkaiKanan)
         sceneView.autoenablesDefaultLighting = true
+        
     }
     
     func setupWoodboard() {
@@ -176,13 +295,13 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = UIImage(named: "woodblock")
         planeGeometry.materials = [material]
         
-        let nodeWoodboard = SCNNode(geometry: planeGeometry)
-        nodeWoodboard.name = "nodeWoodboard"
         
-        nodeWoodboard.position = SCNVector3(6, -0.2, -0.8)
+        nodeWoodboard.name = "nodePainting"
+        
+        nodeWoodboard.geometry = planeGeometry
+        nodeWoodboard.position = SCNVector3(8.5, -0.2, -0.8)
         nodeWoodboard.rotation = SCNVector4Make(0, -1, 0, .pi/2)
         sceneView.scene.rootNode.addChildNode(nodeWoodboard)
-        
         sceneView.autoenablesDefaultLighting = true
     }
     
@@ -231,9 +350,9 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = UIImage(named: "safetybox_main")
         planeGeometry.materials = [material]
         
-        let nodeBrankas = SCNNode(geometry: planeGeometry)
         nodeBrankas.name = "nodeBrangkas"
         
+        nodeBrankas.geometry = planeGeometry
         nodeBrankas.position = SCNVector3(x: 5, y: -0.7, z : 2)
         nodeBrankas.rotation = SCNVector4Make(0, -1, 0, .pi / 2)
         sceneView.scene.rootNode.addChildNode(nodeBrankas)
@@ -288,6 +407,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 
 //MARK: CollectionView Extensions
 extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -297,6 +417,9 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
         if collectionView == inventoryCollectionView {
             let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
             
+            if inventoryItem[indexPath.row] != "" {
+                cellA.item.image = UIImage(named: inventoryItem[indexPath.row])
+            }
             return cellA
         }
         else {
@@ -305,5 +428,30 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             cellB.layer.cornerRadius = 10.0
             return cellB
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == inventoryCollectionView {
+            let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
+            selectedCell.contentView.backgroundColor = .brown
+            if indexPath.row
+                == 0 && inventoryItem[0] != "" {
+                hammerIsSelected = true
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == inventoryCollectionView {
+            let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
+            selectedCell.contentView.backgroundColor = .clear
+        }
+    }
+    
+    @IBAction func tapHammer(_ sender: Any) {
+        soulFragment.isHidden = true
+        takeHammerFlag = 1
+        inventoryItem[0] = "hammer"
+        inventoryCollectionView.reloadData()
     }
 }
