@@ -91,33 +91,36 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupYouDontText(){
-        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
-        youDontWant.materials = [SCNMaterial()]
+        let planeGeometry = SCNPlane(width: 500, height: 500)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "YOU DONT"))
+        planeGeometry.materials = [material]
+//        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
+//        youDontWant.materials = [SCNMaterial()]
         
-        let nodeYouDont = SCNNode()
+        let nodeYouDont = SCNNode(geometry: planeGeometry)
         nodeYouDont.position = SCNVector3(x : -0.1, y: 0.5, z : 5)
         nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
-        nodeYouDont.geometry = youDontWant
         sceneView.scene.rootNode.addChildNode(nodeYouDont)
         
         sceneView.autoenablesDefaultLighting = true
     }
     
     func setupBingkaiKiri(){
-//        let planeGeometry = SCNPlane(width: 1500, height: 1500)
-//        let material = SCNMaterial()
-//        material.diffuse.contents = UIImage(named: "answer")
-//        planeGeometry.materials = [material]
-         let planeGeometry = SCNPlane(width: 15, height: 15)
-               let material = SCNMaterial()
-               material.diffuse.contents = UIImage(named: "frame question")
-               planeGeometry.materials = [material]
+        let planeGeometry = SCNPlane(width: 10, height: 10)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "hammer"))
+        planeGeometry.materials = [material]
+//        let planeGeometry = SCNPlane(width: 15, height: 15)
+//               let material = SCNMaterial()
+//               material.diffuse.contents = UIImage(named: "frame question")
+//               planeGeometry.materials = [material]
 
-               let bingkaiKiri = SCNNode(geometry: planeGeometry)
-               bingkaiKiri.position = SCNVector3(x : -5, y: 1.5, z : 2)
-               bingkaiKiri.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
-               sceneView.scene.rootNode.addChildNode(bingkaiKiri)
-               sceneView.autoenablesDefaultLighting = true
+        let bingkaiKiri = SCNNode(geometry: planeGeometry)
+        bingkaiKiri.position = SCNVector3(x : 8, y: 1.5, z : 2)
+        bingkaiKiri.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
+        sceneView.scene.rootNode.addChildNode(bingkaiKiri)
+        sceneView.autoenablesDefaultLighting = true
     }
     
     func setupBingkaiKanan(){
