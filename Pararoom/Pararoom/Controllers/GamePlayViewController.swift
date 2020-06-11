@@ -98,45 +98,54 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: Node setups
     func setupPortal(){
-        let portal = SCNText(string: "Portal",extrusionDepth: 0)
-        portal.materials = [SCNMaterial()]
-        
-        let nodePortal = SCNNode()
-        nodePortal.name = "nodePortal"
-        
-        nodePortal.position = SCNVector3(x : -0.1, y: 0, z : -5)
-        nodePortal.scale = SCNVector3(x: 0.01, y: 0.01, z: 0.01)
-        nodePortal.geometry = portal
-        sceneView.scene.rootNode.addChildNode(nodePortal)
-        sceneView.autoenablesDefaultLighting = true
+
+          let planeGeometry = SCNPlane(width: 5, height: 10)
+                let material = SCNMaterial()
+                material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
+                planeGeometry.materials = [material]
+        //        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
+        //        youDontWant.materials = [SCNMaterial()]
+                
+                let nodePortal = SCNNode(geometry: planeGeometry)
+                nodePortal.position = SCNVector3(x : 0.1, y: 0.1, z : -5)
+//                nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
+                sceneView.scene.rootNode.addChildNode(nodePortal)
+                
+                sceneView.autoenablesDefaultLighting = true
     }
     
     func setupYouDontText(){
-        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
-        youDontWant.materials = [SCNMaterial()]
+        let planeGeometry = SCNPlane(width: 500, height: 500)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "YOU DONT"))
+        planeGeometry.materials = [material]
+//        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
+//        youDontWant.materials = [SCNMaterial()]
         
-        let nodeYouDont = SCNNode()
-        nodeYouDont.position = SCNVector3(x : -0.1, y: 0.5, z : 5)
+        let nodeYouDont = SCNNode(geometry: planeGeometry)
+        nodeYouDont.position = SCNVector3(x : 0.1, y: 0.1, z : 5)
         nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
-        nodeYouDont.geometry = youDontWant
         sceneView.scene.rootNode.addChildNode(nodeYouDont)
         
         sceneView.autoenablesDefaultLighting = true
     }
     
     func setupBingkaiKiri(){
-        let bingkaiKiri = SCNText(string: "Bingkai Kiri",extrusionDepth: 0)
-        bingkaiKiri.materials = [SCNMaterial()]
-        
-        let nodeBingkaiKiri = SCNNode()
-        nodeBingkaiKiri.name = "nodeBingkaiKiri"
-        
-        nodeBingkaiKiri.position = SCNVector3(x : -5, y: 1.5, z : -0.6)
-        nodeBingkaiKiri.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
-        nodeBingkaiKiri.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-        nodeBingkaiKiri.geometry = bingkaiKiri
-        sceneView.scene.rootNode.addChildNode(nodeBingkaiKiri)
-        sceneView.autoenablesDefaultLighting = true
+
+        let planeGeometry = SCNPlane(width: 0.5, height: 1)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "frame question"))
+        planeGeometry.materials = [material]
+//        let planeGeometry = SCNPlane(width: 15, height: 15)
+//               let material = SCNMaterial()
+//               material.diffuse.contents = UIImage(named: "frame question")
+//               planeGeometry.materials = [material]
+
+               let bingkaiKiri = SCNNode(geometry: planeGeometry)
+               bingkaiKiri.position = SCNVector3(x : -1, y: 0.1, z : 0.1)
+               bingkaiKiri.rotation = SCNVector4Make(0, -1, 0, .pi / -2)
+               sceneView.scene.rootNode.addChildNode(bingkaiKiri)
+               sceneView.autoenablesDefaultLighting = true
     }
     
     func setupBingkaiKanan(){
@@ -170,14 +179,19 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func setupGrim(){
-        let grim = SCNText(string: "grim",extrusionDepth: 0)
-        grim.materials = [SCNMaterial()]
-        
-        let nodeGrim = SCNNode()
-        nodeGrim.position = SCNVector3(x : -5, y: -1.5, z : 0.6)
+        let planeGeometry = SCNPlane(width: 500, height: 700)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "grimreaper"))
+        planeGeometry.materials = [material]
+//        let grim = SCNText(string: "grim",extrusionDepth: 0)
+//        grim.materials = [SCNMaterial()]
+//
+//        let nodeGrim = SCNNode()
+        let nodeGrim = SCNNode(geometry: planeGeometry)
+        nodeGrim.position = SCNVector3(x : -10, y: -1.5, z : 3)
         nodeGrim.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
         nodeGrim.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-        nodeGrim.geometry = grim
+//        nodeGrim.geometry = grim
         sceneView.scene.rootNode.addChildNode(nodeGrim)
         sceneView.autoenablesDefaultLighting = true
     }
@@ -202,7 +216,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         planeGeometry.materials = [material]
         
         let FireKanan = SCNNode(geometry: planeGeometry)
-        FireKanan.position = SCNVector3(x : 1, y: 2.5, z : -5)
+        FireKanan.position = SCNVector3(x : 1.5, y: 3, z : -5)
         sceneView.scene.rootNode.addChildNode(FireKanan)
         sceneView.autoenablesDefaultLighting = true
     }
