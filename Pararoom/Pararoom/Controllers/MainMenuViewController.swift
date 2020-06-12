@@ -105,5 +105,11 @@ class MainMenuViewController: UIViewController {
             gameplayVC.bgm?.volume = 0.2
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let gameplayVC = segue.destination as? GamePlayViewController {
+            gameplayVC.bgm = player
+            gameplayVC.bgm?.volume = 0.2
+        }
+    }
     
 }

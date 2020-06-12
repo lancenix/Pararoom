@@ -15,10 +15,14 @@
 		4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */; };
 		4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */; };
 		4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A831249254C600171937 /* CustomAlertViewController.swift */; };
+
+		47DCF8C02493245200BBC2E3 /* FireballA_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */; };
+		47DCF8C22493272900BBC2E3 /* FireballB_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */; };
 		EA5CA4CF24931D1D00778EBA /* penampakan 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */; };
 		EA5CA4D024931D1D00778EBA /* puzzlesolved.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CC24931D1D00778EBA /* puzzlesolved.wav */; };
 		EA5CA4D124931D1D00778EBA /* Jumpscare safebox.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CD24931D1D00778EBA /* Jumpscare safebox.wav */; };
 		EA5CA4D224931D1D00778EBA /* tap interaction.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CE24931D1D00778EBA /* tap interaction.wav */; };
+
 		EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1978B2490ABF20072375E /* MainMenuViewController.swift */; };
 		EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197952490CC2D0072375E /* GifImageExtension.swift */; };
 		EAA197AE2490F9630072375E /* gameBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AD2490F9630072375E /* gameBg.gif */; };
@@ -29,6 +33,7 @@
 		EAA197C2249316C70072375E /* SolvingPuzzle.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C1249316C70072375E /* SolvingPuzzle.wav */; };
 		EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C3249316CE0072375E /* safetybox_open.mp3 */; };
 		EAA197C6249316D80072375E /* FireCrackleSE.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C5249316D80072375E /* FireCrackleSE.wav */; };
+		EAA197C82493337D0072375E /* CongratulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197C72493337D0072375E /* CongratulationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,10 +47,14 @@
 		4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINChoicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A831249254C600171937 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+
+		47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballA_SFX.gif; sourceTree = "<group>"; };
+		47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballB_SFX.gif; sourceTree = "<group>"; };
 		EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "penampakan 1.wav"; sourceTree = "<group>"; };
 		EA5CA4CC24931D1D00778EBA /* puzzlesolved.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = puzzlesolved.wav; sourceTree = "<group>"; };
 		EA5CA4CD24931D1D00778EBA /* Jumpscare safebox.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Jumpscare safebox.wav"; sourceTree = "<group>"; };
 		EA5CA4CE24931D1D00778EBA /* tap interaction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tap interaction.wav"; sourceTree = "<group>"; };
+
 		EAA1978B2490ABF20072375E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		EAA197952490CC2D0072375E /* GifImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageExtension.swift; sourceTree = "<group>"; };
 		EAA197AD2490F9630072375E /* gameBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBg.gif; sourceTree = "<group>"; };
@@ -56,6 +65,7 @@
 		EAA197C1249316C70072375E /* SolvingPuzzle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SolvingPuzzle.wav; sourceTree = "<group>"; };
 		EAA197C3249316CE0072375E /* safetybox_open.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = safetybox_open.mp3; sourceTree = "<group>"; };
 		EAA197C5249316D80072375E /* FireCrackleSE.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireCrackleSE.wav; sourceTree = "<group>"; };
+		EAA197C72493337D0072375E /* CongratulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CongratulationViewController.swift; path = Pararoom/View/CongratulationViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				EAA197AD2490F9630072375E /* gameBg.gif */,
+				47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */,
+				47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */,
 				EAA197AF2490F96C0072375E /* FireballARemake.gif */,
 			);
 			path = "GIF Assets";
@@ -98,6 +110,7 @@
 		472B71902491622D00110BE1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAA197C72493337D0072375E /* CongratulationViewController.swift */,
 				EAA1978B2490ABF20072375E /* MainMenuViewController.swift */,
 				EAA197B3249105200072375E /* GamePlayViewController.swift */,
 				4783A831249254C600171937 /* CustomAlertViewController.swift */,
@@ -227,8 +240,13 @@
 				EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */,
 				EAA197AE2490F9630072375E /* gameBg.gif in Resources */,
 				EAA197C2249316C70072375E /* SolvingPuzzle.wav in Resources */,
+
+				47DCF8C22493272900BBC2E3 /* FireballB_SFX.gif in Resources */,
+				47DCF8C02493245200BBC2E3 /* FireballA_SFX.gif in Resources */,
+
 				EA5CA4CF24931D1D00778EBA /* penampakan 1.wav in Resources */,
 				EA5CA4D124931D1D00778EBA /* Jumpscare safebox.wav in Resources */,
+
 				EAA197C6249316D80072375E /* FireCrackleSE.wav in Resources */,
 				EAA197C0249316A70072375E /* nailpulling.mp3 in Resources */,
 				EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */,
@@ -252,6 +270,7 @@
 				4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */,
 				4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */,
 				4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */,
+				EAA197C82493337D0072375E /* CongratulationViewController.swift in Sources */,
 				4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
