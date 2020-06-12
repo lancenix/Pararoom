@@ -31,33 +31,47 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet weak var nodeInteractionMessage: UILabel!
     @IBOutlet weak var NodeInteractionView: UIView!
-    
+
     @IBOutlet weak var labelFrameKiri: UILabel!
-    
     @IBOutlet weak var enterPINButton: UIButton!
     @IBOutlet weak var woodImage: UIButton!
     @IBOutlet weak var soulFragment: UIButton!
     @IBOutlet weak var hammerButton: UIButton!
+    @IBOutlet weak var deadFireballButton: UIButton!
     
-    var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
+    @IBOutlet weak var TestView: UIView!
     
-    var takeHammerFlag = false
+    
+    var prologue = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
+    var inventoryItem : [String] = ["", "", ""]
+    let pinChoices = ["Heart", "Soul", "Fire"]
+    private let correctPIN = "34373"
+    
+    //MARK: Flags
+    var fragmentIsSelected = false
     var hammerIsSelected = false
+    var takeHammerFlag = false
     var takeFragmentFlag = false
+    private var woodDestroyedFlag = false
     private var flagPin = false
     private var showPainting = false
     var isSelected = true
+    var gerakFrameKiri = true
+    private var fireballIsAlive = false
     
-    private let corretPIN = "34373"
-    
-    var inventoryItem : [String] = ["", "", ""]
-    let pinChoices = ["Heart", "Soul", "Fire"]
     
     let nodeBrankas = SCNNode()
     let nodeWoodboard = SCNNode()
     let nodeGrim = SCNNode()
+    let FireKiri = SCNNode()
+    let nodePortal = SCNNode()
     
-    var gerakFrameKiri = true
+    var animationProperty = UIViewPropertyAnimator()
+    
+    var soundEffect: AVAudioPlayer?
+    var bgm: AVAudioPlayer?
+
+    var ending = ["Not Bad!! Seem you have the potential to survive!", "But Remember… \nYour journey don’t end here. Good Luck!!"]
     
    
     
@@ -76,28 +90,31 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         setupWoodboard()
         setupGrim()
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
         viewSetup()
         
         
         registerGestureRecognizers()
     }
+    
         
     @IBAction func woodPressed(_ sender: Any) {
         if hammerIsSelected{
             nodeWoodboard.isHidden = true
             woodImage.isHidden = true
+            woodDestroyedFlag = true
             soulFragment.isHidden = false
         }
         else {
             nodeInteractionMessage.isHidden = false
             nodeInteractionMessage.text = "You need a tool to open this board"
         }
-        
     }
     
     @IBAction func hideNodeInteractionView(_ sender: Any) {
+        if fireballIsAlive {
+            TestView.isHidden = false
+        }
+        
         NodeInteractionView.isHidden = true
         
         showPainting = false
@@ -105,6 +122,20 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
         showPainting = false
+        
+        
+    }
+    
+    @IBAction func skullRevived(_ sender: Any) {
+        if fragmentIsSelected {
+            FireKiri.geometry?.materials.first?.diffuse.contents = UIImage.gif(name: "FireballB_SFX")
+            fireballIsAlive = true
+            deadFireballButton.isHidden = true
+            ZoomedNodeImage.isHidden = false
+            ZoomedNodeImage.image = UIImage.gif(name: "FireballB_SFX")
+            nodeInteractionMessage.text = "I appreciate your effort."
+            nodePortal.isHidden = false
+        }
     }
     
     @IBAction func takeSoulFragment(_ sender: Any) {
@@ -135,13 +166,12 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         let addAction = UIAlertAction(title: "Confirm", style: .default) { _ in
         
             guard let PIN = alertController.textFields?.first?.text else {return}
-            if PIN == self.corretPIN {
+            if PIN == self.correctPIN {
                 self.openSafetyBox()
             }
         }
                     
         addAction.isEnabled = false
-                
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alertController.addTextField(configurationHandler: { textField in
@@ -149,7 +179,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             textField.keyboardType = .numberPad
             textField.addTarget(self, action: #selector(self.handleTextChanged), for: .editingChanged)
         })
-        
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
             
@@ -183,11 +212,12 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             if !showPainting {
                 woodImage.isHidden = true
             }
+            ZoomedNodeImage.isHidden = false
+            deadFireballButton.isHidden = true
             if hitResults.first?.node.name == "nodeBrangkas" {
                 
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
                 NodeInteractionView.isHidden = false
-//                PINChoicesCollectionView.isHidden = false
                 nodeInteractionMessage.isHidden = false
                 nodeInteractionMessage.text = "This safety box needs a PIN for it to be opened. What is it?"
                 
@@ -202,9 +232,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             else if hitResults.first?.node.name == "nodePainting"{
                 showPainting = true
                 ZoomedNodeImage.image = UIImage(named: "painting_wood")
-                
-                
-                woodImage.isHidden = false
+                deadFireballButton.isHidden = true
+                if !woodDestroyedFlag {
+                    woodImage.isHidden = false
+                }
                 NodeInteractionView.isHidden = false
             }
             else if hitResults.first?.node.name == "grimRiper"{
@@ -216,20 +247,14 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 nodeInteractionMessage.isHidden = false
                 
                 nodeInteractionMessage.text = "What are the thing that you need?"
-                
-                
-                
             }
                 
-                else if hitResults.first?.node.name == "frameKiri"{
+            else if hitResults.first?.node.name == "frameKiri"{
                 
                 ZoomedNodeImage.image = UIImage(named: "frame question")
                 
                 let interval = 0.01
                 let manager = CMMotionManager()
-//                let frameKiriWidth = CGFloat(400)
-//                let frameKiriHeight = CGFloat(600)
-               
                
                 manager.deviceMotionUpdateInterval = interval
                 let queue = OperationQueue()
@@ -240,47 +265,33 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 let gravity = data.gravity
                     let rotation = atan2(gravity.x, gravity.y) - .pi
                     
-                    
-                    
-//                                    if data.attitude.roll >= 1.39 && data.attitude.roll <= 1.61 || data.attitude.roll >= -1.61 && data.attitude.roll <= -1.39{
-////                                        self.showPass()
-//
-//                                    }
-//
-
                     OperationQueue.main.addOperation {
                         self.ZoomedNodeImage?.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
                     }
                 })
-                
-                
-
-                
-                
-//                func SetImageView() {
-//                    if !gerakFrameKiri { return }
-//
-//                let iv = ZoomedNodeImage
-//
-//
-//                // center the image
-//                let x = (self.view.frame.width/2)-(frameKiriWidth/2)
-//                let y = (self.view.frame.height/2)-(frameKiriHeight/2)
-//                    iv?.frame = CGRect(x: x, y: y, width: frameKiriWidth, height: frameKiriHeight)
-//
-//                self.view.addSubview(iv!)
-//                self.ZoomedNodeImage = iv
-//
-//
-//                           }
-//                 SetImageView()
-                
-                              
                 NodeInteractionView.isHidden = false
             }
-            else{
-                ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
+            else if hitResults.first?.node.name == "fireKanan" {
+                ZoomedNodeImage.image = UIImage.gif(name: "FireballA_SFX")
                 NodeInteractionView.isHidden = false
+                
+                nodeInteractionMessage.text = "So have you found it?"
+                nodeInteractionMessage.isHidden = false
+            }
+            else if hitResults.first?.node.name == "fireKiri" {
+                NodeInteractionView.isHidden = false
+                if fireballIsAlive {
+                    ZoomedNodeImage.image = UIImage.gif(name: "FireballB_SFX")
+                    nodeInteractionMessage.text = "I appreciate your effort."
+                }
+                else {
+                    ZoomedNodeImage.isHidden = true
+                    deadFireballButton.isHidden = false
+                    deadFireballButton.imageEdgeInsets = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+                        nodeInteractionMessage.text = "This fireball needs a soul fragment to be revived"
+                        nodeInteractionMessage.isHidden = false
+                    
+                }
             }
         }
     }
@@ -293,10 +304,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     func viewSetup() {
         recommendationViewContainer.isHidden = false
-        npcViewController.isHidden = true
         
         npcImage.loadGif(name: "FireballARemake")
-        contentLabel.text = convArray[0]
         
         inventoryCollectionView.isHidden = true
         NodeInteractionView.isHidden = true
@@ -305,12 +314,66 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
         labelFrameKiri.isHidden = true
+        deadFireballButton.isHidden = true
+        nodePortal.isHidden = true
         
         hammerButton.isHidden = true
         soulFragment.isHidden = true
-        prevButtonHidden()
         
-         
+        TestView.isHidden = true
+    }
+    
+    //MARK: NPC game prologue dialog
+
+    func prologueSetup() {
+        npcViewController.isHidden = false
+        contentLabel.text = prologue[0]
+        
+        let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
+              do {
+                 try AVAudioSession.sharedInstance().setMode(.default)
+                  guard let urlFire = urlFire else {
+                      return
+                  }
+                  
+                  soundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlFire))
+                  guard let soundEffect = soundEffect else{
+                      return
+                  }
+                  soundEffect.numberOfLoops = -1
+                  soundEffect.volume = 1
+                  soundEffect.play()
+              }catch let error{
+                   print(error.localizedDescription)
+              }
+        
+        prevButtonHidden()
+    }
+    
+    //MARK: NPC game ending dialog
+    func endingSetup(){
+        npcViewController.isHidden = false
+        contentLabel.text = ending[0]
+
+        let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
+            do {
+                try AVAudioSession.sharedInstance().setMode(.default)
+                    guard let urlFire = urlFire else {
+                        return
+                    }
+                         
+                soundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlFire))
+                guard let soundEffect = soundEffect else{
+                    return
+                }
+                soundEffect.numberOfLoops = -1
+                soundEffect.volume = 1
+                soundEffect.play()
+            }catch let error{
+                print(error.localizedDescription)
+            }
+        
+        prevButtonHidden()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -333,20 +396,17 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: Node setups
     func setupPortal(){
-
-          let planeGeometry = SCNPlane(width: 5, height: 10)
-                let material = SCNMaterial()
-                material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
-                planeGeometry.materials = [material]
-        //        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
-        //        youDontWant.materials = [SCNMaterial()]
-                
-                let nodePortal = SCNNode(geometry: planeGeometry)
-                nodePortal.position = SCNVector3(x : 0.1, y: 0.1, z : -5)
-//                nodeYouDont.scale = SCNVector3(x: -0.01, y: 0.01, z: -0.01)
-                sceneView.scene.rootNode.addChildNode(nodePortal)
-                
-                sceneView.autoenablesDefaultLighting = true
+        let planeGeometry = SCNPlane(width: 5, height: 10)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
+        planeGeometry.materials = [material]
+        
+        
+        nodePortal.geometry = planeGeometry
+        nodePortal.position = SCNVector3(x : 0.1, y: 0.1, z : -5)
+        sceneView.scene.rootNode.addChildNode(nodePortal)
+        
+        sceneView.autoenablesDefaultLighting = true
     }
     
     func setupYouDontText(){
@@ -354,8 +414,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         let material = SCNMaterial()
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "YOU DONT"))
         planeGeometry.materials = [material]
-//        let youDontWant = SCNText(string: "You Dont Want to Escape",extrusionDepth: 0)
-//        youDontWant.materials = [SCNMaterial()]
         
         let nodeYouDont = SCNNode(geometry: planeGeometry)
         nodeYouDont.position = SCNVector3(x : 0.1, y: 0.1, z : 8)
@@ -371,7 +429,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = UIImage(named: "soul_fragment")
         planeGeometry.materials = [material]
         
-        
     }
     
     func setupBingkaiKiri(){
@@ -380,19 +437,11 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         let material = SCNMaterial()
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "frame question"))
         planeGeometry.materials = [material]
-//        let planeGeometry = SCNPlane(width: 15, height: 15)
-//               let material = SCNMaterial()
-//               material.diffuse.contents = UIImage(named: "frame question")
-//               planeGeometry.materials = [material]
 
                let bingkaiKiri = SCNNode(geometry: planeGeometry)
         bingkaiKiri.name = "frameKiri"
         bingkaiKiri.position = SCNVector3(x : -3.5, y: 0.1, z : 0.1)
                bingkaiKiri.rotation = SCNVector4Make(0, -1, 0, .pi / -2)
-        
-        
-       
-        
                sceneView.scene.rootNode.addChildNode(bingkaiKiri)
                sceneView.autoenablesDefaultLighting = true
     }
@@ -436,29 +485,26 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "grimreaper"))
         planeGeometry.materials = [material]
         
-//        let grim = SCNText(string: "grim",extrusionDepth: 0)
-//        grim.materials = [SCNMaterial()]
-//
-//        let nodeGrim = SCNNode()
         nodeGrim.geometry = planeGeometry
         nodeGrim.name = "grimRiper"
         nodeGrim.position = SCNVector3(x : -3, y: -1.5, z : -1)
         nodeGrim.rotation = SCNVector4Make(0, 1, 0, .pi / -2)
         nodeGrim.scale = SCNVector3(x: -0.01, y: 0.05, z: -0.3)
-//        nodeGrim.geometry = grim
         sceneView.scene.rootNode.addChildNode(nodeGrim)
         sceneView.autoenablesDefaultLighting = true
     }
     
     func setupFire1(){
         
-        let planeGeometry = SCNPlane(width: 15, height: 15)
+        let planeGeometry = SCNPlane(width: 1, height: 1)
         let material = SCNMaterial()
         material.diffuse.contents = UIImage(named: "FireballB_Dead.png")
         planeGeometry.materials = [material]
 
-        let FireKiri = SCNNode(geometry: planeGeometry)
-        FireKiri.position = SCNVector3(x : -1, y: 1.5, z : -5)
+        
+        FireKiri.geometry = planeGeometry
+        FireKiri.name = "fireKiri"
+        FireKiri.position = SCNVector3(x : -1, y: 2, z : -4)
         sceneView.scene.rootNode.addChildNode(FireKiri)
         sceneView.autoenablesDefaultLighting = true
     }
@@ -466,11 +512,12 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     func setupFire2(){
         let planeGeometry = SCNPlane(width: 5, height: 5)
         let material = SCNMaterial()
-        material.diffuse.contents = UIImage.gif(name: "FireballARemake")
+        material.diffuse.contents = UIImage(named: "FireballA")
         planeGeometry.materials = [material]
         
         let FireKanan = SCNNode(geometry: planeGeometry)
-        FireKanan.position = SCNVector3(x : 1.5, y: 3, z : -5)
+        FireKanan.name = "fireKanan"
+        FireKanan.position = SCNVector3(x : 1.5, y: 3, z : -4)
         sceneView.scene.rootNode.addChildNode(FireKanan)
         sceneView.autoenablesDefaultLighting = true
     }
@@ -502,37 +549,89 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         prevButtonImage.isHidden = false
         prevButton.isHidden = false
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let congratsVC = segue.destination as? CongratulationViewController {
+            congratsVC.bgm = bgm
+            congratsVC.bgm?.volume = 1
+        }
+    }
+    
     @IBAction func proceedButton(_ sender: Any) {
-        recommendationViewContainer.isHidden = true
         npcViewController.isHidden = false
+        UIView.transition(from: recommendationViewContainer, to: npcViewController, duration: 2, options: .transitionCrossDissolve, completion: nil)
+        recommendationViewContainer.isHidden = true
+    
+        prologueSetup()
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
-        if contentLabel.text == convArray[0] {
-             contentLabel.text = convArray[1]
+        //prologue
+        if contentLabel.text == prologue[0] {
+            prevButtonHiddenFalse()
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[1]
+            }, completion: nil)
+         } else if contentLabel.text == prologue[1]{
+             contentLabel.text = prologue[2]
              prevButtonHiddenFalse()
-         } else if contentLabel.text == convArray[1]{
-             contentLabel.text = convArray[2]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[2]
+            }, completion: nil)
+         }else if contentLabel.text == prologue[2]{
+             contentLabel.text = prologue[3]
              prevButtonHiddenFalse()
-         }else if contentLabel.text == convArray[2]{
-             contentLabel.text = convArray[3]
-             prevButtonHiddenFalse()
-         }else if contentLabel.text == convArray[3]{
-             npcViewController.isHidden = true
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[3]
+            }, completion: nil)
+         }else if contentLabel.text == prologue[3]{
+            UIView.transition(from: npcViewController, to: inventoryCollectionView, duration: 2, options: .transitionCrossDissolve, completion: nil)
+            npcViewController.isHidden = true
             inventoryCollectionView.isHidden = false
+            soundEffect!.stop()
          }
+        
+        //ending
+        if contentLabel.text == ending[0]{
+            prevButtonHiddenFalse()
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: { self.contentLabel.text = self.ending[1] }, completion: nil)
+        }else if contentLabel.text == ending[1]{
+            performSegue(withIdentifier: "congratulations", sender: nil)
+            soundEffect!.stop()
+        }
     }
     
     @IBAction func prevButtonAction(_ sender: Any) {
-        if contentLabel.text == convArray[0]{
+        //prologue
+        if contentLabel.text == prologue[0]{
             prevButtonHidden()
-        }else if contentLabel.text == convArray [1]{
-            contentLabel.text = convArray[0]
+        }else if contentLabel.text == prologue [1]{
+            contentLabel.text = prologue[0]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[0]
+            }, completion: nil)
+
             prevButtonHidden()
-        }else if contentLabel.text == convArray[2]{
-            contentLabel.text = convArray[1]
-        }else if contentLabel.text == convArray[3]{
-            contentLabel.text = convArray[2]
+        }else if contentLabel.text == prologue[2]{
+            contentLabel.text = prologue[1]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[1]
+            }, completion: nil)
+        }else if contentLabel.text == prologue[3]{
+            contentLabel.text = prologue[2]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[2]
+            }, completion: nil)
+        }
+        
+        //ending
+        if contentLabel.text == ending[0]{
+            prevButtonHidden()
+        }else if contentLabel.text == ending[1]{
+            contentLabel.text = ending[0]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.ending[0]
+            }, completion: nil)
+            prevButtonHidden()
         }
     }
 }
@@ -575,6 +674,9 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                 == 0 && inventoryItem[0] != "" {
                     hammerIsSelected = true
                 }
+                else if indexPath.row == 1 && inventoryItem[1] != "" {
+                    fragmentIsSelected = true
+                }
                 isSelected = false
             } else {
                 selectedCell.contentView.backgroundColor = .clear
@@ -582,6 +684,10 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                 if indexPath.row
                 == 0 && inventoryItem[0] != "" {
                     hammerIsSelected = false
+                }
+                else if indexPath.row
+                == 1 && inventoryItem[1] != "" {
+                    fragmentIsSelected = false
                 }
             }
         }
