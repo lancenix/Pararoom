@@ -79,6 +79,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 
     var ending = ["Not Bad!! Seem you have the potential to survive!", "But Remember… \nYour journey don’t end here. Good Luck!!"]
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
