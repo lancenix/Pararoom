@@ -315,6 +315,10 @@
                                             <action selector="skullRevived:" destination="abv-5q-nIE" eventType="touchUpInside" id="91v-Ax-xdW"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jumpscarefix" translatesAutoresizingMaskIntoConstraints="NO" id="yr2-KX-Cg6">
+                                        <rect key="frame" x="-126" y="108" width="521" height="405"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -396,6 +400,7 @@
                         <outlet property="enterPINButton" destination="yAl-wV-ivf" id="qBO-2c-nha"/>
                         <outlet property="hammerButton" destination="cjF-aC-Z9m" id="cUp-ma-xCv"/>
                         <outlet property="inventoryCollectionView" destination="dzA-ue-7H4" id="c98-O4-ycJ"/>
+                        <outlet property="jumpScareimg" destination="yr2-KX-Cg6" id="cuy-zd-ydI"/>
                         <outlet property="labelFrameKiri" destination="KFU-ND-D70" id="CgG-L7-xvf"/>
                         <outlet property="nextButton" destination="zXj-lp-vx5" id="8XW-M0-ZCi"/>
                         <outlet property="nextButtonEnding" destination="bIN-Ep-TEb" id="N6g-JV-l0T"/>
@@ -495,6 +500,7 @@ You have just finished the prologue episode!!</string>
         <image name="game title caps" width="2480" height="1698"/>
         <image name="hammer" width="2480" height="2480"/>
         <image name="inventory" width="945" height="2008"/>
+        <image name="jumpscarefix" width="9449" height="9449"/>
         <image name="overlayfixpng" width="1181" height="2362"/>
         <image name="playButton copy" width="2000" height="894"/>
         <image name="soul_fragment" width="3308" height="2480"/>
