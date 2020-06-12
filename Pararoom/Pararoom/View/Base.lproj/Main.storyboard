@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1XI-gC-tny">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="abv-5q-nIE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -163,14 +163,14 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXj-lp-vx5">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXj-lp-vx5">
                                         <rect key="frame" x="314" y="649" width="80" height="71"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="nextButtonAction:" destination="abv-5q-nIE" eventType="touchUpInside" id="Ftc-qV-bB7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-Kh-lP4">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-Kh-lP4">
                                         <rect key="frame" x="26" y="649" width="80" height="71"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
@@ -227,7 +227,7 @@
                                         <rect key="frame" x="-38" y="46" width="415" height="437"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-KA-58B">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-KA-58B">
                                         <rect key="frame" x="294" y="-3" width="37" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="20"/>
@@ -238,7 +238,7 @@
                                             <action selector="hideNodeInteractionView:" destination="abv-5q-nIE" eventType="touchUpInside" id="Y9v-pg-LlU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjF-aC-Z9m">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjF-aC-Z9m">
                                         <rect key="frame" x="53" y="193" width="162" height="156"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="hammer"/>
@@ -246,7 +246,7 @@
                                             <action selector="tapHammer:" destination="abv-5q-nIE" eventType="touchUpInside" id="lfo-4f-P60"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvj-9b-13Z">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvj-9b-13Z">
                                         <rect key="frame" x="0.0" y="183" width="374" height="178"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="woodblock"/>
@@ -254,7 +254,7 @@
                                             <action selector="woodPressed:" destination="abv-5q-nIE" eventType="touchUpInside" id="dfB-J4-l0P"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="run-aZ-RhC">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="run-aZ-RhC">
                                         <rect key="frame" x="118" y="300" width="79" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="soul_fragment"/>
@@ -262,6 +262,10 @@
                                             <action selector="takeSoulFragment:" destination="abv-5q-nIE" eventType="touchUpInside" id="EdV-rP-I78"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jumpscarefix" translatesAutoresizingMaskIntoConstraints="NO" id="UzT-sZ-8qK">
+                                        <rect key="frame" x="-150" y="143" width="569" height="362"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -341,6 +345,7 @@
                         <outlet property="enterPINButton" destination="yAl-wV-ivf" id="qBO-2c-nha"/>
                         <outlet property="hammerButton" destination="cjF-aC-Z9m" id="cUp-ma-xCv"/>
                         <outlet property="inventoryCollectionView" destination="dzA-ue-7H4" id="c98-O4-ycJ"/>
+                        <outlet property="jumpScareImage" destination="UzT-sZ-8qK" id="WhO-3z-9Di"/>
                         <outlet property="labelFrameKiri" destination="KFU-ND-D70" id="CgG-L7-xvf"/>
                         <outlet property="nextButton" destination="zXj-lp-vx5" id="8XW-M0-ZCi"/>
                         <outlet property="nextButtonImage" destination="gUD-Xv-dvN" id="Z6Z-5D-flh"/>
@@ -371,6 +376,7 @@
         <image name="game title caps" width="2480" height="1698"/>
         <image name="hammer" width="2480" height="2480"/>
         <image name="inventory" width="945" height="2008"/>
+        <image name="jumpscarefix" width="9449" height="9449"/>
         <image name="overlayfixpng" width="1181" height="2362"/>
         <image name="playButton copy" width="2000" height="894"/>
         <image name="soul_fragment" width="3308" height="2480"/>

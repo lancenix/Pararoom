@@ -82,22 +82,22 @@ class MainMenuViewController: UIViewController {
         performSegue(withIdentifier: "toGameplay", sender: self)
         let tapSound = sender.tag
         
-        switch tapSound {
-        case 1:
-            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
-            let url = URL(fileURLWithPath: pathToSound)
-            
-            do{
-                tapSoundFX = try AVAudioPlayer(contentsOf: url)
-                tapSoundFX?.play()
-            } catch{
-                
-            }
-        default:
-            return
-            
-            
-        }
+//        switch tapSound {
+//        case 1:
+//            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+//            let url = URL(fileURLWithPath: pathToSound)
+//            
+//            do{
+//                tapSoundFX = try AVAudioPlayer(contentsOf: url)
+//                tapSoundFX?.play()
+//            } catch{
+//                
+//            }
+//        default:
+//            return
+//            
+//            
+//        }
     }
     
 }

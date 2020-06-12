@@ -37,6 +37,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var woodImage: UIButton!
     @IBOutlet weak var soulFragment: UIButton!
     @IBOutlet weak var hammerButton: UIButton!
+    @IBOutlet weak var jumpScareImage: UIImageView!
+    
     
     var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
     var inventoryItem : [String] = ["", "", ""]
@@ -56,9 +58,11 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     let nodeBrankas = SCNNode()
     let nodeWoodboard = SCNNode()
     let nodeGrim = SCNNode()
+    var startMotion = CMMotionManager()
     
     var animationProperty = UIViewPropertyAnimator()
     
+    var tapSoundFX2 : AVAudioPlayer?
    
     
     override func viewDidLoad() {
@@ -84,11 +88,14 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         registerGestureRecognizers()
     }
         
-    @IBAction func woodPressed(_ sender: Any) {
+    @IBAction func woodPressed(_ sender: UIButton) {
         if hammerIsSelected{
+            puzzleSolvedSound()
             nodeWoodboard.isHidden = true
             woodImage.isHidden = true
             soulFragment.isHidden = false
+            
+            
         }
         else {
             nodeInteractionMessage.isHidden = false
@@ -96,24 +103,62 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    @IBAction func hideNodeInteractionView(_ sender: Any) {
+    @IBAction func hideNodeInteractionView(_ sender: UIButton) {
         NodeInteractionView.isHidden = true
         
         showPainting = false
         PINChoicesCollectionView.isHidden = true
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
+        jumpScareImage.isHidden = true
         showPainting = false
+        let tapSound = sender.tag
+        startMotion.stopDeviceMotionUpdates()
+        
+        switch tapSound {
+        case 1:
+            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+            let url = URL(fileURLWithPath: pathToSound)
+            
+            do{
+                tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+                tapSoundFX2?.play()
+            } catch{
+                
+            }
+        default:
+            return
+            
+            
+        }
     }
     
-    @IBAction func takeSoulFragment(_ sender: Any) {
+    @IBAction func takeSoulFragment(_ sender: UIButton) {
         soulFragment.isHidden = true
         takeFragmentFlag = true
         inventoryItem[1] = "soul_fragment"
         inventoryCollectionView.reloadData()
+        let tapSound = sender.tag
+        
+        switch tapSound {
+        case 1:
+            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+            let url = URL(fileURLWithPath: pathToSound)
+            
+            do{
+                tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+                tapSoundFX2?.play()
+            } catch{
+                
+            }
+        default:
+            return
+            
+            
+        }
     }
     
-    @IBAction func tapHammer(_ sender: Any) {
+    @IBAction func tapHammer(_ sender: UIButton) {
         hammerButton.isHidden = true
         takeHammerFlag = true
         inventoryItem[0] = "hammer"
@@ -121,9 +166,24 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 
         labelFrameKiri.isHidden = true
         
+        let tapSound = sender.tag
         
-        
-        print(showPainting)
+        switch tapSound {
+        case 1:
+            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+            let url = URL(fileURLWithPath: pathToSound)
+            
+            do{
+                tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+                tapSoundFX2?.play()
+            } catch{
+                
+            }
+        default:
+            return
+            
+            
+        }
 
     }
     
@@ -186,9 +246,15 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
                 NodeInteractionView.isHidden = false
+                jumpScareImage.isHidden = true
 //                PINChoicesCollectionView.isHidden = false
                 nodeInteractionMessage.isHidden = false
                 nodeInteractionMessage.text = "This safety box needs a PIN for it to be opened. What is it?"
+                
+                
+                playTap()
+                
+                
                 
                 if takeHammerFlag {
                     enterPINButton.isHidden = true
@@ -205,6 +271,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 
                 woodImage.isHidden = false
                 NodeInteractionView.isHidden = false
+                playTap()
             }
             else if hitResults.first?.node.name == "grimRiper"{
                 ZoomedNodeImage.image = UIImage(named: "grimreaper")
@@ -215,6 +282,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 nodeInteractionMessage.isHidden = false
                 
                 nodeInteractionMessage.text = "What are the thing that you need?"
+                playTap()
                 
                 
                 
@@ -223,21 +291,25 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 else if hitResults.first?.node.name == "frameKiri"{
                 
                 ZoomedNodeImage.image = UIImage(named: "frame question")
+                playTap()
                 
                 let interval = 0.01
-                let manager = CMMotionManager()
+                
+                
 //                let frameKiriWidth = CGFloat(400)
 //                let frameKiriHeight = CGFloat(600)
                
                
-                manager.deviceMotionUpdateInterval = interval
+                startMotion.deviceMotionUpdateInterval = interval
                 let queue = OperationQueue()
                                 
-                manager.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
+                startMotion.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
                 guard let data = data else { return }
-                guard manager.isDeviceMotionAvailable else { return }
+                    guard self.startMotion.isDeviceMotionAvailable else { return }
                 let gravity = data.gravity
                     let rotation = atan2(gravity.x, gravity.y) - .pi
+                    
+                
                     
                     
                     
@@ -288,6 +360,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         nodeBrankas.geometry?.materials.first?.diffuse.contents = UIImage(named: "safetybox_open")
         ZoomedNodeImage.image = UIImage(named: "safetybox_open")
         hammerButton.isHidden = false
+        jumpScareImage.isHidden = false
+        jumpScareSound()
     }
     
     func viewSetup() {
@@ -501,42 +575,52 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         npcViewController.isHidden = false
         UIView.transition(from: recommendationViewContainer, to: npcViewController, duration: 2, options: .transitionCrossDissolve, completion: nil)
         recommendationViewContainer.isHidden = true
+        playTap()
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
         if contentLabel.text == convArray[0] {
+            playTap()
             prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.convArray[1]
             }, completion: nil)
          } else if contentLabel.text == convArray[1]{
+            playTap()
              contentLabel.text = convArray[2]
              prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.convArray[2]
             }, completion: nil)
          }else if contentLabel.text == convArray[2]{
+            playTap()
              contentLabel.text = convArray[3]
              prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.convArray[3]
             }, completion: nil)
          }else if contentLabel.text == convArray[3]{
+            playTap()
             UIView.transition(from: npcViewController, to: inventoryCollectionView, duration: 2, options: .transitionCrossDissolve, completion: nil)
             npcViewController.isHidden = true
             inventoryCollectionView.isHidden = false
+            playGrimSound()
          }
     }
     
     @IBAction func prevButtonAction(_ sender: Any) {
         if contentLabel.text == convArray[0]{
             prevButtonHidden()
+            
         }else if contentLabel.text == convArray [1]{
+            playTap()
             contentLabel.text = convArray[0]
             prevButtonHidden()
         }else if contentLabel.text == convArray[2]{
+            playTap()
             contentLabel.text = convArray[1]
         }else if contentLabel.text == convArray[3]{
+            playTap()
             contentLabel.text = convArray[2]
         }
     }
@@ -576,9 +660,11 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             
             if isSelected {
                 selectedCell.contentView.backgroundColor = .brown
+                playTap()
                 if indexPath.row
                 == 0 && inventoryItem[0] != "" {
                     hammerIsSelected = true
+                    
                 }
                 isSelected = false
             } else {
@@ -611,4 +697,52 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
+    func playTap() {
+        
+        let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+            
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+                
+            }
+    }
+        func playGrimSound() {
+        let pathToSound = Bundle.main.path(forResource: "penampakan 1", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+            
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+                
+            }
+    }
+    func jumpScareSound() {
+        let pathToSound = Bundle.main.path(forResource: "Jumpscare safebox", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+            
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+                
+            }
+    }
+    
+    func puzzleSolvedSound() {
+        let pathToSound = Bundle.main.path(forResource: "puzzlesolved", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+            
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+                
+            }
+    }
+
 }
+
