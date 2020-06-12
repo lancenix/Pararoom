@@ -337,6 +337,20 @@
                                     <outlet property="delegate" destination="abv-5q-nIE" id="2Ff-j0-Anf"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Oj-sa-Yyk">
+                                <rect key="frame" x="86" y="526" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5o-9W-O14">
+                                        <rect key="frame" x="99" y="54" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Fci-vS-EiB"/>
@@ -345,6 +359,7 @@
                     <connections>
                         <outlet property="NodeInteractionView" destination="VnP-2S-26k" id="gcV-xa-hVJ"/>
                         <outlet property="PINChoicesCollectionView" destination="LsX-v5-RAr" id="i9g-73-DmK"/>
+                        <outlet property="TestView" destination="5Oj-sa-Yyk" id="ukb-61-UJu"/>
                         <outlet property="ZoomedNodeImage" destination="3yb-1z-5K5" id="eXH-SU-Xeg"/>
                         <outlet property="contentLabel" destination="jOS-eq-oQG" id="FWj-8X-e7B"/>
                         <outlet property="deadFireballButton" destination="JSv-Vf-Ait" id="54d-Li-cbf"/>
