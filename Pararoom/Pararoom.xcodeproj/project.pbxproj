@@ -15,6 +15,8 @@
 		4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */; };
 		4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */; };
 		4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A831249254C600171937 /* CustomAlertViewController.swift */; };
+		47DCF8C02493245200BBC2E3 /* FireballA_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */; };
+		47DCF8C22493272900BBC2E3 /* FireballB_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */; };
 		EAA1978C2490ABF20072375E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1978B2490ABF20072375E /* MainMenuViewController.swift */; };
 		EAA197962490CC2D0072375E /* GifImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197952490CC2D0072375E /* GifImageExtension.swift */; };
 		EAA197AE2490F9630072375E /* gameBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AD2490F9630072375E /* gameBg.gif */; };
@@ -38,6 +40,8 @@
 		4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINChoicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A831249254C600171937 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballA_SFX.gif; sourceTree = "<group>"; };
+		47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballB_SFX.gif; sourceTree = "<group>"; };
 		EAA1978B2490ABF20072375E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		EAA197952490CC2D0072375E /* GifImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageExtension.swift; sourceTree = "<group>"; };
 		EAA197AD2490F9630072375E /* gameBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBg.gif; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				EAA197AD2490F9630072375E /* gameBg.gif */,
+				47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */,
+				47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */,
 				EAA197AF2490F96C0072375E /* FireballARemake.gif */,
 			);
 			path = "GIF Assets";
@@ -214,6 +220,8 @@
 				EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */,
 				EAA197AE2490F9630072375E /* gameBg.gif in Resources */,
 				EAA197C2249316C70072375E /* SolvingPuzzle.wav in Resources */,
+				47DCF8C22493272900BBC2E3 /* FireballB_SFX.gif in Resources */,
+				47DCF8C02493245200BBC2E3 /* FireballA_SFX.gif in Resources */,
 				EAA197C6249316D80072375E /* FireCrackleSE.wav in Resources */,
 				EAA197C0249316A70072375E /* nailpulling.mp3 in Resources */,
 				EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */,
