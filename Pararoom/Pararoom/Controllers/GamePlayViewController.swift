@@ -31,33 +31,33 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet weak var nodeInteractionMessage: UILabel!
     @IBOutlet weak var NodeInteractionView: UIView!
-    
+
     @IBOutlet weak var labelFrameKiri: UILabel!
-    
     @IBOutlet weak var enterPINButton: UIButton!
     @IBOutlet weak var woodImage: UIButton!
     @IBOutlet weak var soulFragment: UIButton!
     @IBOutlet weak var hammerButton: UIButton!
     
     var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
+    var inventoryItem : [String] = ["", "", ""]
+    let pinChoices = ["Heart", "Soul", "Fire"]
+    private let correctPIN = "34373"
     
+    //MARK: Flags
     var takeHammerFlag = false
     var hammerIsSelected = false
     var takeFragmentFlag = false
     private var flagPin = false
     private var showPainting = false
     var isSelected = true
+    var gerakFrameKiri = true
     
-    private let corretPIN = "34373"
-    
-    var inventoryItem : [String] = ["", "", ""]
-    let pinChoices = ["Heart", "Soul", "Fire"]
     
     let nodeBrankas = SCNNode()
     let nodeWoodboard = SCNNode()
     let nodeGrim = SCNNode()
     
-    var gerakFrameKiri = true
+    var animationProperty = UIViewPropertyAnimator()
     
    
     
@@ -94,7 +94,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             nodeInteractionMessage.isHidden = false
             nodeInteractionMessage.text = "You need a tool to open this board"
         }
-        
     }
     
     @IBAction func hideNodeInteractionView(_ sender: Any) {
@@ -135,7 +134,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         let addAction = UIAlertAction(title: "Confirm", style: .default) { _ in
         
             guard let PIN = alertController.textFields?.first?.text else {return}
-            if PIN == self.corretPIN {
+            if PIN == self.correctPIN {
                 self.openSafetyBox()
             }
         }
@@ -389,10 +388,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         bingkaiKiri.name = "frameKiri"
         bingkaiKiri.position = SCNVector3(x : -3.5, y: 0.1, z : 0.1)
                bingkaiKiri.rotation = SCNVector4Make(0, -1, 0, .pi / -2)
-        
-        
-       
-        
                sceneView.scene.rootNode.addChildNode(bingkaiKiri)
                sceneView.autoenablesDefaultLighting = true
     }
@@ -503,22 +498,32 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         prevButton.isHidden = false
     }
     @IBAction func proceedButton(_ sender: Any) {
-        recommendationViewContainer.isHidden = true
         npcViewController.isHidden = false
+        UIView.transition(from: recommendationViewContainer, to: npcViewController, duration: 2, options: .transitionCrossDissolve, completion: nil)
+        recommendationViewContainer.isHidden = true
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
         if contentLabel.text == convArray[0] {
-             contentLabel.text = convArray[1]
-             prevButtonHiddenFalse()
+            prevButtonHiddenFalse()
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.convArray[1]
+            }, completion: nil)
          } else if contentLabel.text == convArray[1]{
              contentLabel.text = convArray[2]
              prevButtonHiddenFalse()
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.convArray[2]
+            }, completion: nil)
          }else if contentLabel.text == convArray[2]{
              contentLabel.text = convArray[3]
              prevButtonHiddenFalse()
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.convArray[3]
+            }, completion: nil)
          }else if contentLabel.text == convArray[3]{
-             npcViewController.isHidden = true
+            UIView.transition(from: npcViewController, to: inventoryCollectionView, duration: 2, options: .transitionCrossDissolve, completion: nil)
+            npcViewController.isHidden = true
             inventoryCollectionView.isHidden = false
          }
     }
