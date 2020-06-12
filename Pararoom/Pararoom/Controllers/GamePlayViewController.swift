@@ -314,6 +314,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                     
                 }
             }
+            else if hitResults.first?.node.name == "nodePortal" {
+                print("segue to congratulations")
+                performSegue(withIdentifier: "congratulations", sender: nil)
+            }
         }
     }
     
@@ -426,7 +430,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
         planeGeometry.materials = [material]
         
-        
+        nodePortal.name = "nodePortal"
         nodePortal.geometry = planeGeometry
         nodePortal.position = SCNVector3(x : 0.1, y: 0.1, z : -5)
         sceneView.scene.rootNode.addChildNode(nodePortal)
