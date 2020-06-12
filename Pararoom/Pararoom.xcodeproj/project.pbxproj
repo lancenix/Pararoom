@@ -15,6 +15,7 @@
 		4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */; };
 		4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */; };
 		4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783A831249254C600171937 /* CustomAlertViewController.swift */; };
+		479561062493B4A7007CD9CC /* woman laughing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 479561052493B4A7007CD9CC /* woman laughing.mp3 */; };
 		47DCF8C02493245200BBC2E3 /* FireballA_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */; };
 		47DCF8C22493272900BBC2E3 /* FireballB_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */; };
 		EA5CA4CF24931D1D00778EBA /* penampakan 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */; };
@@ -45,6 +46,7 @@
 		4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINChoicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A80F2492256300171937 /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4783A831249254C600171937 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		479561052493B4A7007CD9CC /* woman laughing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "woman laughing.mp3"; sourceTree = "<group>"; };
 		47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballA_SFX.gif; sourceTree = "<group>"; };
 		47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballB_SFX.gif; sourceTree = "<group>"; };
 		EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "penampakan 1.wav"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */,
 				EA5CA4CC24931D1D00778EBA /* Puzzle 1 solved.wav */,
 				EA5CA4CE24931D1D00778EBA /* tap interaction.wav */,
+				479561052493B4A7007CD9CC /* woman laughing.mp3 */,
 			);
 			path = "BGM and Sound Effects";
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4755AF38248F7C9900CF2D95 /* art.scnassets in Resources */,
+				479561062493B4A7007CD9CC /* woman laughing.mp3 in Resources */,
 				EA5CA4D024931D1D00778EBA /* Puzzle 1 solved.wav in Resources */,
 				4755AF42248F7C9B00CF2D95 /* LaunchScreen.storyboard in Resources */,
 				EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */,
@@ -409,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WU2B466A8A;
+				DEVELOPMENT_TEAM = 64D4KPKN55;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -428,7 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WU2B466A8A;
+				DEVELOPMENT_TEAM = 64D4KPKN55;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

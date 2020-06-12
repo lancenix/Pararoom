@@ -114,6 +114,23 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             woodImage.isHidden = true
             woodDestroyedFlag = true
             soulFragment.isHidden = false
+            soulFragment.alpha = 0
+            
+            UIView.animateKeyframes(withDuration: 1.5, delay: 0.1, options: .calculationModeLinear,
+                                    animations: {
+                                        UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                    self.womanLaughing()
+                    self.ZoomedNodeImage.transform = CGAffineTransform(scaleX: 3, y: 3)
+                    self.ZoomedNodeImage.alpha = 0
+                }
+                                        UIView.addKeyframe(withRelativeStartTime: 1, relativeDuration: 0.5) {
+                    self.ZoomedNodeImage.transform = .identity
+                    self.ZoomedNodeImage.alpha = 1
+                }
+                                        UIView.addKeyframe(withRelativeStartTime: 1.5, relativeDuration: 1) {
+                                            self.soulFragment.alpha = 1
+                                        }
+            }, completion: nil)
         }
         else {
             nodeInteractionMessage.isHidden = false
@@ -322,12 +339,18 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func openSafetyBox(){
-        jumpscareSound()
         self.jumpScareimg.isHidden = false
-        UIView.animate(withDuration: 2, delay: 2, options: UIView.AnimationOptions.transitionFlipFromTop, animations: {
+        self.jumpScareimg.alpha = 0
+        UIView.animate(withDuration: 0.2) {
+            self.jumpScareimg.alpha = 1
+        }
+        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions.transitionFlipFromTop, animations: {
+            self.jumpscareSound()
+            self.jumpScareimg.transform = CGAffineTransform(scaleX: 5, y: 5)
             self.jumpScareimg.alpha = 0
         }, completion: { finished in
             self.jumpScareimg.isHidden = true
+            
         })
         nodeBrankas.geometry?.materials.first?.diffuse.contents = UIImage(named: "safetybox_open")
         ZoomedNodeImage.image = UIImage(named: "safetybox_open")
@@ -772,6 +795,7 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
+    //MARK: SFX
     func tappingSound() {
         let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
         let url = URL(fileURLWithPath: pathToSound)
@@ -831,6 +855,17 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             
         }
 
+    }
+    
+    func womanLaughing(){
+        let pathToSound = Bundle.main.path(forResource: "woman laughing", ofType: "mp3")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch {
+            
+        }
     }
     
     func jumpScare() {
