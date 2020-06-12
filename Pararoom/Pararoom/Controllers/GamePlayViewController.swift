@@ -47,6 +47,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var prevButtonEndingImage: UIImageView!
     @IBOutlet weak var nextButtonEndingImage: UIImageView!
     @IBOutlet weak var npcImageEnding: UIImageView!
+    @IBOutlet weak var jumpScareimg: UIImageView!
+    
     
     var prologue = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
     var inventoryItem : [String] = ["", "", ""]
@@ -64,6 +66,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     var isSelected = true
     var gerakFrameKiri = true
     private var fireballIsAlive = false
+    var manager = CMMotionManager()
     
     
     let nodeBrankas = SCNNode()
@@ -76,6 +79,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     var soundEffect: AVAudioPlayer?
     var bgm: AVAudioPlayer?
+    var tapSoundFX2: AVAudioPlayer?
 
     var ending = ["Not Bad!! Seem you have the potential to survive!", "But Remember… \nYour journey don’t end here. Good Luck!!"]
     
@@ -105,6 +109,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         
     @IBAction func woodPressed(_ sender: Any) {
         if hammerIsSelected{
+            nailSound()
             nodeWoodboard.isHidden = true
             woodImage.isHidden = true
             woodDestroyedFlag = true
@@ -122,18 +127,21 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         }
         
         NodeInteractionView.isHidden = true
-        
+        tappingSound()
         showPainting = false
         PINChoicesCollectionView.isHidden = true
         nodeInteractionMessage.isHidden = true
         enterPINButton.isHidden = true
         showPainting = false
+        jumpScareimg.isHidden = true
+        manager.stopDeviceMotionUpdates()
         
         
     }
     
     @IBAction func skullRevived(_ sender: Any) {
         if fragmentIsSelected {
+            solveSound()
             FireKiri.geometry?.materials.first?.diffuse.contents = UIImage.gif(name: "FireballB_SFX")
             fireballIsAlive = true
             deadFireballButton.isHidden = true
@@ -145,6 +153,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func takeSoulFragment(_ sender: Any) {
+        tappingSound()
         soulFragment.isHidden = true
         takeFragmentFlag = true
         inventoryItem[1] = "soul_fragment"
@@ -152,6 +161,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func tapHammer(_ sender: Any) {
+        tappingSound()
         hammerButton.isHidden = true
         takeHammerFlag = true
         inventoryItem[0] = "hammer"
@@ -221,11 +231,12 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             ZoomedNodeImage.isHidden = false
             deadFireballButton.isHidden = true
             if hitResults.first?.node.name == "nodeBrangkas" {
-                
+                tappingSound()
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
                 NodeInteractionView.isHidden = false
                 nodeInteractionMessage.isHidden = false
                 nodeInteractionMessage.text = "This safety box needs a PIN for it to be opened. What is it?"
+                
                 
                 if takeHammerFlag {
                     enterPINButton.isHidden = true
@@ -236,6 +247,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
             else if hitResults.first?.node.name == "nodePainting"{
+                tappingSound()
                 showPainting = true
                 ZoomedNodeImage.image = UIImage(named: "painting_wood")
                 deadFireballButton.isHidden = true
@@ -245,6 +257,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 NodeInteractionView.isHidden = false
             }
             else if hitResults.first?.node.name == "grimRiper"{
+                tappingSound()
                 ZoomedNodeImage.image = UIImage(named: "grimreaper")
                 
                 NodeInteractionView.isHidden = false
@@ -256,18 +269,18 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             }
                 
             else if hitResults.first?.node.name == "frameKiri"{
-                
+                tappingSound()
                 ZoomedNodeImage.image = UIImage(named: "frame question")
                 
                 let interval = 0.01
-                let manager = CMMotionManager()
+                
                
                 manager.deviceMotionUpdateInterval = interval
                 let queue = OperationQueue()
                                 
                 manager.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
                 guard let data = data else { return }
-                guard manager.isDeviceMotionAvailable else { return }
+                    guard self.manager.isDeviceMotionAvailable else { return }
                 let gravity = data.gravity
                     let rotation = atan2(gravity.x, gravity.y) - .pi
                     
@@ -278,6 +291,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 NodeInteractionView.isHidden = false
             }
             else if hitResults.first?.node.name == "fireKanan" {
+                tappingSound()
                 ZoomedNodeImage.image = UIImage.gif(name: "FireballA_SFX")
                 NodeInteractionView.isHidden = false
                 
@@ -285,6 +299,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 nodeInteractionMessage.isHidden = false
             }
             else if hitResults.first?.node.name == "fireKiri" {
+                tappingSound()
                 NodeInteractionView.isHidden = false
                 if fireballIsAlive {
                     ZoomedNodeImage.image = UIImage.gif(name: "FireballB_SFX")
@@ -307,6 +322,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func openSafetyBox(){
+        jumpscareSound()
+        jumpScareimg.isHidden = false
         nodeBrankas.geometry?.materials.first?.diffuse.contents = UIImage(named: "safetybox_open")
         ZoomedNodeImage.image = UIImage(named: "safetybox_open")
         hammerButton.isHidden = false
@@ -327,6 +344,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         labelFrameKiri.isHidden = true
         deadFireballButton.isHidden = true
         nodePortal.isHidden = true
+        jumpScareimg.isHidden = true
         
         hammerButton.isHidden = true
         soulFragment.isHidden = true
@@ -590,23 +608,27 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func nextButtonAction(_ sender: Any) {
         //prologue
         if contentLabel.text == prologue[0] {
+            tappingSound()
             prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[1]
             }, completion: nil)
          } else if contentLabel.text == prologue[1]{
+            tappingSound()
              contentLabel.text = prologue[2]
              prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[2]
             }, completion: nil)
          }else if contentLabel.text == prologue[2]{
+            tappingSound()
              contentLabel.text = prologue[3]
              prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[3]
             }, completion: nil)
          }else if contentLabel.text == prologue[3]{
+            grimSound()
             UIView.transition(from: npcViewController, to: inventoryCollectionView, duration: 2, options: .transitionCrossDissolve, completion: nil)
             npcViewController.isHidden = true
             inventoryCollectionView.isHidden = false
@@ -619,6 +641,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         if contentLabel.text == prologue[0]{
             prevButtonHidden()
         }else if contentLabel.text == prologue [1]{
+            tappingSound()
             contentLabel.text = prologue[0]
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[0]
@@ -626,11 +649,13 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 
             prevButtonHidden()
         }else if contentLabel.text == prologue[2]{
+            tappingSound()
             contentLabel.text = prologue[1]
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[1]
             }, completion: nil)
         }else if contentLabel.text == prologue[3]{
+            tappingSound()
             contentLabel.text = prologue[2]
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[2]
@@ -697,6 +722,7 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
             
             if isSelected {
+                tappingSound()
                 selectedCell.contentView.backgroundColor = .brown
                 if indexPath.row
                 == 0 && inventoryItem[0] != "" {
@@ -720,6 +746,7 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             }
         }
         else if collectionView == PINChoicesCollectionView{
+            tappingSound()
             let selectedCell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
             selectedCell.contentView.backgroundColor = .brown
             if indexPath.row == 1 {
@@ -739,5 +766,67 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
         selectedCell.contentView.backgroundColor = .white
         }
     }
+    
+    func tappingSound() {
+        let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+            
+        }
+    }
+    
+    func grimSound() {
+        let pathToSound = Bundle.main.path(forResource: "penampakan 1", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+            
+        }
+    }
+    
+    func nailSound() {
+        let pathToSound = Bundle.main.path(forResource: "nailpulling", ofType: "mp3")!
+        let url = URL(fileURLWithPath: pathToSound)
+        
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+            
+        }
+    }
+    
+    func jumpscareSound() {
+        let pathToSound = Bundle.main.path(forResource: "Jumpscare safebox", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+            
+        }
+    }
+    
+    func solveSound() {
+        let pathToSound = Bundle.main.path(forResource: "Puzzle 1 solved", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        
+        do{
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch{
+            
+        }
+
+    }
+
     
 }

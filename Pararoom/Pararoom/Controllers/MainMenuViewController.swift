@@ -57,52 +57,30 @@ class MainMenuViewController: UIViewController {
     @IBAction func playButton(_ sender: UIButton) {
         menuView.isHidden = true
         onboardingViewContainer.isHidden = false
-        let tapSound = sender.tag
-        
-        switch tapSound {
-        case 1:
-            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
-            let url = URL(fileURLWithPath: pathToSound)
-            
-            do{
-                tapSoundFX = try AVAudioPlayer(contentsOf: url)
-                tapSoundFX?.play()
-            } catch{
-                
-            }
-        default:
-            return
-            
-            
-        }
+        tapSound()
         
     }
     
     @IBAction func proceedButton(_ sender: UIButton) {
         performSegue(withIdentifier: "toGameplay", sender: self)
-        let tapSound = sender.tag
-        
-        switch tapSound {
-        case 1:
-            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
-            let url = URL(fileURLWithPath: pathToSound)
-            
-            do{
-                tapSoundFX = try AVAudioPlayer(contentsOf: url)
-                tapSoundFX?.play()
-            } catch{
-                
-            }
-        default:
-            return
-            
-            
-        }
+        tapSound()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let gameplayVC = segue.destination as? GamePlayViewController {
             gameplayVC.bgm = player
             gameplayVC.bgm?.volume = 0.2
+        }
+    }
+    
+    func tapSound() {
+        let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        
+        do{
+            tapSoundFX = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX?.play()
+        } catch{
+            
         }
     }
     
