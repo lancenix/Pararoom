@@ -110,26 +110,21 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func woodPressed(_ sender: Any) {
         if hammerIsSelected{
             nailSound()
-            nodeWoodboard.isHidden = true
+            
             woodImage.isHidden = true
             woodDestroyedFlag = true
             soulFragment.isHidden = false
             soulFragment.alpha = 0
-            
-            UIView.animateKeyframes(withDuration: 1.5, delay: 0.1, options: .calculationModeLinear,
+            womanLaughing()
+            UIView.animateKeyframes(withDuration: 2, delay: 0.3, options: .calculationModeLinear,
                                     animations: {
                                         UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                    self.womanLaughing()
-                    self.ZoomedNodeImage.transform = CGAffineTransform(scaleX: 3, y: 3)
-                    self.ZoomedNodeImage.alpha = 0
+                    
+                    self.nodeWoodboard.isHidden = true
                 }
-                                        UIView.addKeyframe(withRelativeStartTime: 1, relativeDuration: 0.5) {
-                    self.ZoomedNodeImage.transform = .identity
-                    self.ZoomedNodeImage.alpha = 1
+                                        UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+                    self.soulFragment.alpha = 1
                 }
-                                        UIView.addKeyframe(withRelativeStartTime: 1.5, relativeDuration: 1) {
-                                            self.soulFragment.alpha = 1
-                                        }
             }, completion: nil)
         }
         else {
@@ -332,8 +327,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
             else if hitResults.first?.node.name == "nodePortal" {
-                print("segue to congratulations")
-                performSegue(withIdentifier: "congratulations", sender: nil)
+                self.nodePortal.geometry?.materials.first?.diffuse.contents = UIImage(named: "portal")
+                DispatchQueue.main.asyncAfter(deadline:.now() + 2.0, execute: {
+                   self.performSegue(withIdentifier:"congratulations",sender: self)
+                })
             }
         }
     }
@@ -455,7 +452,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     func setupPortal(){
         let planeGeometry = SCNPlane(width: 5, height: 10)
         let material = SCNMaterial()
-        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "portal"))
+        material.diffuse.contents = UIImage(named: "doorclosed")
         planeGeometry.materials = [material]
         
         nodePortal.name = "nodePortal"
