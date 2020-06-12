@@ -446,7 +446,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     func setupYouDontText(){
         let planeGeometry = SCNPlane(width: 500, height: 500)
         let material = SCNMaterial()
-        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "YOU DONT"))
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "noescape"))
         planeGeometry.materials = [material]
         
         let nodeYouDont = SCNNode(geometry: planeGeometry)
@@ -469,7 +469,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
 
         let planeGeometry = SCNPlane(width: 0.5, height: 1)
         let material = SCNMaterial()
-        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "frame question"))
+        material.diffuse.contents = UIImageView.init(image: #imageLiteral(resourceName: "answer"))
         planeGeometry.materials = [material]
 
                let bingkaiKiri = SCNNode(geometry: planeGeometry)
