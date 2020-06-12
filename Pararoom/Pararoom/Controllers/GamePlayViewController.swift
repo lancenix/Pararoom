@@ -203,6 +203,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 woodImage.isHidden = true
             }
             ZoomedNodeImage.isHidden = false
+            deadFireballButton.isHidden = true
             if hitResults.first?.node.name == "nodeBrangkas" {
                 
                 ZoomedNodeImage.image = (hitResults.first?.node.geometry?.materials.first?.diffuse.contents as! UIImage)
@@ -304,12 +305,13 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         enterPINButton.isHidden = true
         labelFrameKiri.isHidden = true
         deadFireballButton.isHidden = true
+        nodePortal.isHidden = true
         
         hammerButton.isHidden = true
         soulFragment.isHidden = true
     }
     
-    //NPC game prologue dialog
+    //MARK: NPC game prologue dialog
     func prologueSetup() {
         npcViewController.isHidden = false
         contentLabel.text = prologue[0]
@@ -335,12 +337,12 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         prevButtonHidden()
     }
     
-    //NPC game ending dialog
+    //MARK: NPC game ending dialog
     func endingSetup(){
         npcViewController.isHidden = false
         contentLabel.text = ending[0]
         
-        nodePortal.isHidden = true
+        
         let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
             do {
                 try AVAudioSession.sharedInstance().setMode(.default)
