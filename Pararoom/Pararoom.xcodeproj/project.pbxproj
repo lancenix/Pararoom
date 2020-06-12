@@ -20,6 +20,11 @@
 		EAA197AE2490F9630072375E /* gameBg.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AD2490F9630072375E /* gameBg.gif */; };
 		EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */ = {isa = PBXBuildFile; fileRef = EAA197AF2490F96C0072375E /* FireballARemake.gif */; };
 		EAA197B4249105200072375E /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197B3249105200072375E /* GamePlayViewController.swift */; };
+		EAA197BE2493169D0072375E /* BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAA197BD2493169D0072375E /* BGM.mp3 */; };
+		EAA197C0249316A70072375E /* nailpulling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAA197BF249316A70072375E /* nailpulling.mp3 */; };
+		EAA197C2249316C70072375E /* SolvingPuzzle.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C1249316C70072375E /* SolvingPuzzle.wav */; };
+		EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C3249316CE0072375E /* safetybox_open.mp3 */; };
+		EAA197C6249316D80072375E /* FireCrackleSE.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C5249316D80072375E /* FireCrackleSE.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		EAA197AD2490F9630072375E /* gameBg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBg.gif; sourceTree = "<group>"; };
 		EAA197AF2490F96C0072375E /* FireballARemake.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballARemake.gif; sourceTree = "<group>"; };
 		EAA197B3249105200072375E /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
+		EAA197BD2493169D0072375E /* BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM.mp3; sourceTree = "<group>"; };
+		EAA197BF249316A70072375E /* nailpulling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nailpulling.mp3; sourceTree = "<group>"; };
+		EAA197C1249316C70072375E /* SolvingPuzzle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SolvingPuzzle.wav; sourceTree = "<group>"; };
+		EAA197C3249316CE0072375E /* safetybox_open.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = safetybox_open.mp3; sourceTree = "<group>"; };
+		EAA197C5249316D80072375E /* FireCrackleSE.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireCrackleSE.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +116,7 @@
 		4755AF34248F7C9900CF2D95 /* Pararoom */ = {
 			isa = PBXGroup;
 			children = (
+				EAA197BC249315AB0072375E /* BGM and Sound Effects */,
 				EAA197B92491DC880072375E /* CollectionViewCell */,
 				472B71902491622D00110BE1 /* Controllers */,
 				472B718F2491621B00110BE1 /* View */,
@@ -126,6 +137,18 @@
 				4783A80D2492136D00171937 /* PINChoicesCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		EAA197BC249315AB0072375E /* BGM and Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				EAA197BD2493169D0072375E /* BGM.mp3 */,
+				EAA197BF249316A70072375E /* nailpulling.mp3 */,
+				EAA197C1249316C70072375E /* SolvingPuzzle.wav */,
+				EAA197C3249316CE0072375E /* safetybox_open.mp3 */,
+				EAA197C5249316D80072375E /* FireCrackleSE.wav */,
+			);
+			path = "BGM and Sound Effects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +213,11 @@
 				4755AF42248F7C9B00CF2D95 /* LaunchScreen.storyboard in Resources */,
 				EAA197B02490F96C0072375E /* FireballARemake.gif in Resources */,
 				EAA197AE2490F9630072375E /* gameBg.gif in Resources */,
+				EAA197C2249316C70072375E /* SolvingPuzzle.wav in Resources */,
+				EAA197C6249316D80072375E /* FireCrackleSE.wav in Resources */,
+				EAA197C0249316A70072375E /* nailpulling.mp3 in Resources */,
+				EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */,
+				EAA197BE2493169D0072375E /* BGM.mp3 in Resources */,
 				4755AF3F248F7C9B00CF2D95 /* Assets.xcassets in Resources */,
 				4755AF3D248F7C9900CF2D95 /* Main.storyboard in Resources */,
 			);
