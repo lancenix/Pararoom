@@ -32,7 +32,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var NodeInteractionView: UIView!
 
     @IBOutlet weak var labelFrameKiri: UILabel!
-
     @IBOutlet weak var enterPINButton: UIButton!
     @IBOutlet weak var woodImage: UIButton!
     @IBOutlet weak var soulFragment: UIButton!
