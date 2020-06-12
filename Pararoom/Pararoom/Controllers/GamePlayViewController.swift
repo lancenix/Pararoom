@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import CoreMotion
+import AVFoundation
 
 class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
@@ -57,6 +58,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     let nodeGrim = SCNNode()
     
     var animationProperty = UIViewPropertyAnimator()
+    
+    var soundEffect: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -306,7 +309,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         soulFragment.isHidden = true
         prevButtonHidden()
         
-         
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -498,6 +500,24 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         npcViewController.isHidden = false
         UIView.transition(from: recommendationViewContainer, to: npcViewController, duration: 2, options: .transitionCrossDissolve, completion: nil)
         recommendationViewContainer.isHidden = true
+        
+        let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
+        do {
+           try AVAudioSession.sharedInstance().setMode(.default)
+            guard let urlFire = urlFire else {
+                return
+            }
+            
+            soundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlFire))
+            guard let soundEffect = soundEffect else{
+                return
+            }
+            soundEffect.numberOfLoops = -1
+            soundEffect.volume = 1
+            soundEffect.play()
+        }catch let error{
+             print(error.localizedDescription)
+        }
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
@@ -522,6 +542,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             UIView.transition(from: npcViewController, to: inventoryCollectionView, duration: 2, options: .transitionCrossDissolve, completion: nil)
             npcViewController.isHidden = true
             inventoryCollectionView.isHidden = false
+            soundEffect!.stop()
          }
     }
     

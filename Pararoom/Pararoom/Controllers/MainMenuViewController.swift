@@ -38,7 +38,6 @@ class MainMenuViewController: UIViewController {
         let urlString = Bundle.main.path(forResource: "BGM", ofType: "mp3")
         do {
            try AVAudioSession.sharedInstance().setMode(.default)
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
             guard let urlString = urlString else {
                 return
             }
