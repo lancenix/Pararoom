@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import CoreMotion
+import AVFoundation
 
 class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
@@ -57,6 +58,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     let nodeGrim = SCNNode()
     
     var gerakFrameKiri = true
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,6 +16,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var onboardingViewContainer: UIView!
     
     var player: AVAudioPlayer?
+    var tapSoundFX : AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +54,50 @@ class MainMenuViewController: UIViewController {
         }
     }
     
-    @IBAction func playButton(_ sender: Any) {
+    @IBAction func playButton(_ sender: UIButton) {
         menuView.isHidden = true
         onboardingViewContainer.isHidden = false
+        let tapSound = sender.tag
+        
+        switch tapSound {
+        case 1:
+            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+            let url = URL(fileURLWithPath: pathToSound)
+            
+            do{
+                tapSoundFX = try AVAudioPlayer(contentsOf: url)
+                tapSoundFX?.play()
+            } catch{
+                
+            }
+        default:
+            return
+            
+            
+        }
+        
     }
     
-    @IBAction func proceedButton(_ sender: Any) {
+    @IBAction func proceedButton(_ sender: UIButton) {
         performSegue(withIdentifier: "toGameplay", sender: self)
+        let tapSound = sender.tag
+        
+        switch tapSound {
+        case 1:
+            let pathToSound = Bundle.main.path(forResource: "tap interaction", ofType: "wav")!
+            let url = URL(fileURLWithPath: pathToSound)
+            
+            do{
+                tapSoundFX = try AVAudioPlayer(contentsOf: url)
+                tapSoundFX?.play()
+            } catch{
+                
+            }
+        default:
+            return
+            
+            
+        }
     }
     
 }
