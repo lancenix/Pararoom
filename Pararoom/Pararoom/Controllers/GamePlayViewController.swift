@@ -66,7 +66,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     var isSelected = true
     var gerakFrameKiri = true
     private var fireballIsAlive = false
-    var manager = CMMotionManager()
+//    var manager = CMMotionManager()
     
     
     let nodeBrankas = SCNNode()
@@ -134,7 +134,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         enterPINButton.isHidden = true
         showPainting = false
         jumpScareimg.isHidden = true
-        manager.stopDeviceMotionUpdates()
+//        manager.stopDeviceMotionUpdates()
         
         
     }
@@ -270,24 +270,24 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 
             else if hitResults.first?.node.name == "frameKiri"{
                 tappingSound()
-                ZoomedNodeImage.image = UIImage(named: "frame question")
+                ZoomedNodeImage.image = UIImage(named: "frame answered")
                 
-                let interval = 0.01
-                
-               
-                manager.deviceMotionUpdateInterval = interval
-                let queue = OperationQueue()
-                                
-                manager.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
-                guard let data = data else { return }
-                    guard self.manager.isDeviceMotionAvailable else { return }
-                let gravity = data.gravity
-                    let rotation = atan2(gravity.x, gravity.y) - .pi
-                    
-                    OperationQueue.main.addOperation {
-                        self.ZoomedNodeImage?.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
-                    }
-                })
+//                let interval = 0.01
+//
+//
+//                manager.deviceMotionUpdateInterval = interval
+//                let queue = OperationQueue()
+//
+//                manager.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
+//                guard let data = data else { return }
+//                    guard self.manager.isDeviceMotionAvailable else { return }
+//                let gravity = data.gravity
+//                    let rotation = atan2(gravity.x, gravity.y) - .pi
+//
+//                    OperationQueue.main.addOperation {
+//                        self.ZoomedNodeImage?.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
+//                    }
+//                })
                 NodeInteractionView.isHidden = false
             }
             else if hitResults.first?.node.name == "fireKanan" {
@@ -323,7 +323,12 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     func openSafetyBox(){
         jumpscareSound()
-        jumpScareimg.isHidden = false
+        self.jumpScareimg.isHidden = false
+        UIView.animate(withDuration: 2, delay: 2, options: UIView.AnimationOptions.transitionFlipFromTop, animations: {
+            self.jumpScareimg.alpha = 0
+        }, completion: { finished in
+            self.jumpScareimg.isHidden = true
+        })
         nodeBrankas.geometry?.materials.first?.diffuse.contents = UIImage(named: "safetybox_open")
         ZoomedNodeImage.image = UIImage(named: "safetybox_open")
         hammerButton.isHidden = false
@@ -826,6 +831,15 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
             
         }
 
+    }
+    
+    func jumpScare() {
+        if jumpScareimg.isHidden == false{
+        UIView.transition(with: jumpScareimg, duration: 3.5, options: .transitionCrossDissolve, animations: {
+            self.jumpScareimg.isHidden = true
+        }, completion: nil)
+        
+    }
     }
 
     
