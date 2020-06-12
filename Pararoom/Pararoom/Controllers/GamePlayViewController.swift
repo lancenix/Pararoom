@@ -39,8 +39,14 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var hammerButton: UIButton!
     @IBOutlet weak var deadFireballButton: UIButton!
     
-    @IBOutlet weak var TestView: UIView!
+    @IBOutlet weak var npcEndingViewController: UIView!
     
+    @IBOutlet weak var contentLabelEnding: UILabel!
+    @IBOutlet weak var nextButtonEnding: UIButton!
+    @IBOutlet weak var prevButtonEnding: UIButton!
+    @IBOutlet weak var prevButtonEndingImage: UIImageView!
+    @IBOutlet weak var nextButtonEndingImage: UIImageView!
+    @IBOutlet weak var npcImageEnding: UIImageView!
     
     var prologue = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
     var inventoryItem : [String] = ["", "", ""]
@@ -110,7 +116,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func hideNodeInteractionView(_ sender: Any) {
         if fireballIsAlive {
-            TestView.isHidden = false
+            endingSetup()
         }
         
         NodeInteractionView.isHidden = true
@@ -304,6 +310,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         recommendationViewContainer.isHidden = false
         
         npcImage.loadGif(name: "FireballARemake")
+        npcImageEnding.loadGif(name: "FireballARemake")
         
         inventoryCollectionView.isHidden = true
         NodeInteractionView.isHidden = true
@@ -318,7 +325,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         hammerButton.isHidden = true
         soulFragment.isHidden = true
         
-        TestView.isHidden = true
+        
     }
     
     //MARK: NPC game prologue dialog
@@ -350,8 +357,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: NPC game ending dialog
     func endingSetup(){
-        npcViewController.isHidden = false
-        contentLabel.text = ending[0]
+        npcEndingViewController.isHidden = false
+        contentLabelEnding.text = ending[0]
 
         let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
             do {
@@ -371,7 +378,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 print(error.localizedDescription)
             }
         
-        prevButtonHidden()
+        prevButtonHiddenEnding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -541,12 +548,24 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     func prevButtonHidden() {
         prevButtonImage.isHidden = true
         prevButton.isHidden = true
+        
+    }
+    
+    func prevButtonHiddenEnding() {
+        prevButtonEnding.isHidden = true
+        prevButtonEndingImage.isHidden = true
     }
     
     func prevButtonHiddenFalse() {
         prevButtonImage.isHidden = false
         prevButton.isHidden = false
     }
+    
+    func prevButtonHiddenFalseEnding(){
+        prevButtonEnding.isHidden = false
+        prevButtonEndingImage.isHidden = false
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let congratsVC = segue.destination as? CongratulationViewController {
             congratsVC.bgm = bgm
@@ -587,15 +606,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             inventoryCollectionView.isHidden = false
             soundEffect!.stop()
          }
-        
-        //ending
-        if contentLabel.text == ending[0]{
-            prevButtonHiddenFalse()
-            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: { self.contentLabel.text = self.ending[1] }, completion: nil)
-        }else if contentLabel.text == ending[1]{
-            performSegue(withIdentifier: "congratulations", sender: nil)
-            soundEffect!.stop()
-        }
     }
     
     @IBAction func prevButtonAction(_ sender: Any) {
@@ -620,18 +630,32 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 self.contentLabel.text = self.prologue[2]
             }, completion: nil)
         }
-        
-        //ending
-        if contentLabel.text == ending[0]{
-            prevButtonHidden()
-        }else if contentLabel.text == ending[1]{
-            contentLabel.text = ending[0]
-            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
-                self.contentLabel.text = self.ending[0]
-            }, completion: nil)
-            prevButtonHidden()
+    }
+    
+    @IBAction func nextButtonEnding(_ sender: Any) {
+        if contentLabelEnding.text == ending[0]{
+            prevButtonHiddenFalseEnding()
+            UIView.transition(with: contentLabelEnding, duration: 1, options: .transitionCrossDissolve, animations: { self.contentLabelEnding.text = self.ending[1] }, completion: nil)
+        }else if contentLabelEnding.text == ending[1]{
+            npcEndingViewController.isHidden = true
+            soundEffect!.stop()
         }
     }
+    
+    @IBAction func prevButtonEnding(_ sender: Any) {
+        if contentLabelEnding.text == ending[0]{
+                  prevButtonHiddenEnding()
+              }else if contentLabelEnding.text == ending[1]{
+                  contentLabelEnding.text = ending[0]
+                  UIView.transition(with: contentLabelEnding, duration: 1, options: .transitionCrossDissolve, animations: {
+                      self.contentLabelEnding.text = self.ending[0]
+                  }, completion: nil)
+                  prevButtonHiddenEnding()
+              }
+    }
+    
+    
+    
 }
 
 //MARK: CollectionView Extensions

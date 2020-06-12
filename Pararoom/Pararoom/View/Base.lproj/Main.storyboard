@@ -181,6 +181,50 @@
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="6qh-MY-qhO"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="L2c-bc-6TV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R4d-9j-GTY">
+                                        <rect key="frame" x="-563" y="-331" width="1459" height="941"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Fireball Text Box" translatesAutoresizingMaskIntoConstraints="NO" id="K62-Zn-kZG">
+                                        <rect key="frame" x="-499" y="167" width="1405" height="892"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Next Button Fire Ball" translatesAutoresizingMaskIntoConstraints="NO" id="Cu0-b7-Ocs">
+                                        <rect key="frame" x="-358" y="344" width="1264" height="865"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Prev Button Fire Ball" translatesAutoresizingMaskIntoConstraints="NO" id="k46-Ai-tfg">
+                                        <rect key="frame" x="-666" y="326" width="1281" height="911"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhQ-iB-yR0">
+                                        <rect key="frame" x="20" y="545" width="374" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="19"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIN-Ep-TEb">
+                                        <rect key="frame" x="314" y="649" width="80" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="nextButtonEnding:" destination="abv-5q-nIE" eventType="touchUpInside" id="Yno-Uy-Res"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nb1-oK-nfj">
+                                        <rect key="frame" x="26" y="649" width="80" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="prevButtonEnding:" destination="abv-5q-nIE" eventType="touchUpInside" id="cVD-Z1-iLg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="pCE-9H-qIF"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dzA-ue-7H4">
                                 <rect key="frame" x="55" y="790" width="303" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -337,20 +381,6 @@
                                     <outlet property="delegate" destination="abv-5q-nIE" id="2Ff-j0-Anf"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Oj-sa-Yyk">
-                                <rect key="frame" x="86" y="526" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5o-9W-O14">
-                                        <rect key="frame" x="99" y="54" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Fci-vS-EiB"/>
@@ -359,20 +389,26 @@
                     <connections>
                         <outlet property="NodeInteractionView" destination="VnP-2S-26k" id="gcV-xa-hVJ"/>
                         <outlet property="PINChoicesCollectionView" destination="LsX-v5-RAr" id="i9g-73-DmK"/>
-                        <outlet property="TestView" destination="5Oj-sa-Yyk" id="ukb-61-UJu"/>
                         <outlet property="ZoomedNodeImage" destination="3yb-1z-5K5" id="eXH-SU-Xeg"/>
                         <outlet property="contentLabel" destination="jOS-eq-oQG" id="FWj-8X-e7B"/>
+                        <outlet property="contentLabelEnding" destination="QhQ-iB-yR0" id="yPr-0g-bCO"/>
                         <outlet property="deadFireballButton" destination="JSv-Vf-Ait" id="54d-Li-cbf"/>
                         <outlet property="enterPINButton" destination="yAl-wV-ivf" id="qBO-2c-nha"/>
                         <outlet property="hammerButton" destination="cjF-aC-Z9m" id="cUp-ma-xCv"/>
                         <outlet property="inventoryCollectionView" destination="dzA-ue-7H4" id="c98-O4-ycJ"/>
                         <outlet property="labelFrameKiri" destination="KFU-ND-D70" id="CgG-L7-xvf"/>
                         <outlet property="nextButton" destination="zXj-lp-vx5" id="8XW-M0-ZCi"/>
+                        <outlet property="nextButtonEnding" destination="bIN-Ep-TEb" id="N6g-JV-l0T"/>
+                        <outlet property="nextButtonEndingImage" destination="Cu0-b7-Ocs" id="V2C-ed-Dvn"/>
                         <outlet property="nextButtonImage" destination="gUD-Xv-dvN" id="Z6Z-5D-flh"/>
                         <outlet property="nodeInteractionMessage" destination="QV1-n6-Pt6" id="X4X-2i-K2f"/>
+                        <outlet property="npcEndingViewController" destination="L2c-bc-6TV" id="L5r-NE-puE"/>
                         <outlet property="npcImage" destination="elP-2h-24J" id="Dbt-Gh-lBD"/>
+                        <outlet property="npcImageEnding" destination="R4d-9j-GTY" id="KBN-UH-AcO"/>
                         <outlet property="npcViewController" destination="sXT-lr-EQ6" id="v5Y-Gw-mfB"/>
                         <outlet property="prevButton" destination="3cO-Kh-lP4" id="qXq-yI-rLh"/>
+                        <outlet property="prevButtonEnding" destination="Nb1-oK-nfj" id="YRd-rU-re8"/>
+                        <outlet property="prevButtonEndingImage" destination="k46-Ai-tfg" id="m7i-3s-YFE"/>
                         <outlet property="prevButtonImage" destination="37T-gI-TGN" id="DD6-tn-sfr"/>
                         <outlet property="recommendationViewContainer" destination="4d6-xl-aVy" id="UgI-pm-4Aw"/>
                         <outlet property="sceneView" destination="F2S-NT-Wu7" id="LRn-MH-Ye9"/>
@@ -383,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-3l-eWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1074" y="-578"/>
+            <point key="canvasLocation" x="1073.913043478261" y="-578.57142857142856"/>
         </scene>
         <!--Congratulation View Controller-->
         <scene sceneID="BqR-9k-5rS">
