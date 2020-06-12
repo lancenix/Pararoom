@@ -39,6 +39,9 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var hammerButton: UIButton!
     @IBOutlet weak var deadFireballButton: UIButton!
     
+    @IBOutlet weak var TestView: UIView!
+    
+    
     var prologue = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
     var inventoryItem : [String] = ["", "", ""]
     let pinChoices = ["Heart", "Soul", "Fire"]
@@ -69,6 +72,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     var bgm: AVAudioPlayer?
 
     var ending = ["Not Bad!! Seem you have the potential to survive!", "But Remember… \nYour journey don’t end here. Good Luck!!"]
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +111,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func hideNodeInteractionView(_ sender: Any) {
+        if fireballIsAlive {
+            TestView.isHidden = false
+        }
+        
         NodeInteractionView.isHidden = true
         
         showPainting = false
@@ -114,9 +123,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         enterPINButton.isHidden = true
         showPainting = false
         
-        if fireballIsAlive {
-            endingSetup()
-        }
         
     }
     
@@ -313,6 +319,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         
         hammerButton.isHidden = true
         soulFragment.isHidden = true
+        
+        TestView.isHidden = true
     }
     
     //MARK: NPC game prologue dialog
