@@ -60,7 +60,12 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func proceedButton(_ sender: Any) {
         performSegue(withIdentifier: "toGameplay", sender: self)
-        player!.volume = 0.2
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let gameplayVC = segue.destination as? GamePlayViewController {
+            gameplayVC.bgm = player
+            gameplayVC.bgm?.volume = 0.2
+        }
     }
     
 }
