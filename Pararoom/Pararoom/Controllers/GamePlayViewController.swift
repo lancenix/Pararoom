@@ -327,6 +327,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
             else if hitResults.first?.node.name == "nodePortal" {
+                portalSound()
                 self.nodePortal.geometry?.materials.first?.diffuse.contents = UIImage(named: "portal")
                 DispatchQueue.main.asyncAfter(deadline:.now() + 2.0, execute: {
                    self.performSegue(withIdentifier:"congratulations",sender: self)
@@ -690,9 +691,11 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func nextButtonEnding(_ sender: Any) {
         if contentLabelEnding.text == ending[0]{
+            tappingSound()
             prevButtonHiddenFalseEnding()
             UIView.transition(with: contentLabelEnding, duration: 1, options: .transitionCrossDissolve, animations: { self.contentLabelEnding.text = self.ending[1] }, completion: nil)
         }else if contentLabelEnding.text == ending[1]{
+            tappingSound()
             npcEndingViewController.isHidden = true
             soundEffect!.stop()
         }
@@ -700,8 +703,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func prevButtonEnding(_ sender: Any) {
         if contentLabelEnding.text == ending[0]{
+                tappingSound()
                   prevButtonHiddenEnding()
               }else if contentLabelEnding.text == ending[1]{
+                    tappingSound()
                   contentLabelEnding.text = ending[0]
                   UIView.transition(with: contentLabelEnding, duration: 1, options: .transitionCrossDissolve, animations: {
                       self.contentLabelEnding.text = self.ending[0]
@@ -865,13 +870,15 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
-    func jumpScare() {
-        if jumpScareimg.isHidden == false{
-        UIView.transition(with: jumpScareimg, duration: 3.5, options: .transitionCrossDissolve, animations: {
-            self.jumpScareimg.isHidden = true
-        }, completion: nil)
-        
-    }
+    func portalSound(){
+        let pathToSound = Bundle.main.path(forResource: "portalopen", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            tapSoundFX2 = try AVAudioPlayer(contentsOf: url)
+            tapSoundFX2?.play()
+        } catch {
+            
+        }
     }
 
     
