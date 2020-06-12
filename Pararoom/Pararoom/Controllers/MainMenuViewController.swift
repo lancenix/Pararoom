@@ -47,6 +47,7 @@ class MainMenuViewController: UIViewController {
             guard let player = player else{
                 return
             }
+            player.numberOfLoops = -1
             player.play()
         }catch let error{
              print(error.localizedDescription)
@@ -60,6 +61,7 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func proceedButton(_ sender: Any) {
         performSegue(withIdentifier: "toGameplay", sender: self)
+        player!.volume = 0.2
     }
     
 }
