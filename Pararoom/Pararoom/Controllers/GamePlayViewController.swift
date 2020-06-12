@@ -114,6 +114,10 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         enterPINButton.isHidden = true
         showPainting = false
         
+        if fireballIsAlive {
+            endingSetup()
+        }
+        
     }
     
     @IBAction func skullRevived(_ sender: Any) {
