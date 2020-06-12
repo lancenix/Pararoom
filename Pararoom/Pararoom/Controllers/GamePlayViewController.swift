@@ -316,6 +316,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //MARK: NPC game prologue dialog
+
     func prologueSetup() {
         npcViewController.isHidden = false
         contentLabel.text = prologue[0]
@@ -345,8 +346,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     func endingSetup(){
         npcViewController.isHidden = false
         contentLabel.text = ending[0]
-        
-        
+
         let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
             do {
                 try AVAudioSession.sharedInstance().setMode(.default)
@@ -601,6 +601,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
                 self.contentLabel.text = self.prologue[0]
             }, completion: nil)
+
             prevButtonHidden()
         }else if contentLabel.text == prologue[2]{
             contentLabel.text = prologue[1]
