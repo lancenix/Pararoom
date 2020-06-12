@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import CoreMotion
+import AVFoundation
 
 class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
@@ -38,7 +39,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var hammerButton: UIButton!
     @IBOutlet weak var deadFireballButton: UIButton!
     
-    var convArray = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
+    var prologue = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
     var inventoryItem : [String] = ["", "", ""]
     let pinChoices = ["Heart", "Soul", "Fire"]
     private let correctPIN = "34373"
@@ -63,6 +64,11 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     let nodePortal = SCNNode()
     
     var animationProperty = UIViewPropertyAnimator()
+    
+    var soundEffect: AVAudioPlayer?
+    var bgm: AVAudioPlayer?
+
+    var ending = ["Not Bad!! Seem you have the potential to survive!", "But Remember… \nYour journey don’t end here. Good Luck!!"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -287,10 +293,8 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     func viewSetup() {
         recommendationViewContainer.isHidden = false
-        npcViewController.isHidden = true
         
         npcImage.loadGif(name: "FireballARemake")
-        contentLabel.text = convArray[0]
         
         inventoryCollectionView.isHidden = true
         NodeInteractionView.isHidden = true
@@ -303,9 +307,59 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         
         hammerButton.isHidden = true
         soulFragment.isHidden = true
+    }
+    
+    //NPC game prologue dialog
+    func prologueSetup() {
+        npcViewController.isHidden = false
+        contentLabel.text = prologue[0]
+        
+        let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
+              do {
+                 try AVAudioSession.sharedInstance().setMode(.default)
+                  guard let urlFire = urlFire else {
+                      return
+                  }
+                  
+                  soundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlFire))
+                  guard let soundEffect = soundEffect else{
+                      return
+                  }
+                  soundEffect.numberOfLoops = -1
+                  soundEffect.volume = 1
+                  soundEffect.play()
+              }catch let error{
+                   print(error.localizedDescription)
+              }
+        
         prevButtonHidden()
+    }
+    
+    //NPC game ending dialog
+    func endingSetup(){
+        npcViewController.isHidden = false
+        contentLabel.text = ending[0]
         
         nodePortal.isHidden = true
+        let urlFire = Bundle.main.path(forResource: "FireCrackleSE", ofType: "wav")
+            do {
+                try AVAudioSession.sharedInstance().setMode(.default)
+                    guard let urlFire = urlFire else {
+                        return
+                    }
+                         
+                soundEffect = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlFire))
+                guard let soundEffect = soundEffect else{
+                    return
+                }
+                soundEffect.numberOfLoops = -1
+                soundEffect.volume = 1
+                soundEffect.play()
+            }catch let error{
+                print(error.localizedDescription)
+            }
+        
+        prevButtonHidden()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -481,47 +535,88 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         prevButtonImage.isHidden = false
         prevButton.isHidden = false
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let congratsVC = segue.destination as? CongratulationViewController {
+            congratsVC.bgm = bgm
+            congratsVC.bgm?.volume = 1
+        }
+    }
+    
     @IBAction func proceedButton(_ sender: Any) {
         npcViewController.isHidden = false
         UIView.transition(from: recommendationViewContainer, to: npcViewController, duration: 2, options: .transitionCrossDissolve, completion: nil)
         recommendationViewContainer.isHidden = true
+    
+        prologueSetup()
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
-        if contentLabel.text == convArray[0] {
+        //prologue
+        if contentLabel.text == prologue[0] {
             prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
-                self.contentLabel.text = self.convArray[1]
+                self.contentLabel.text = self.prologue[1]
             }, completion: nil)
-         } else if contentLabel.text == convArray[1]{
-             contentLabel.text = convArray[2]
+         } else if contentLabel.text == prologue[1]{
+             contentLabel.text = prologue[2]
              prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
-                self.contentLabel.text = self.convArray[2]
+                self.contentLabel.text = self.prologue[2]
             }, completion: nil)
-         }else if contentLabel.text == convArray[2]{
-             contentLabel.text = convArray[3]
+         }else if contentLabel.text == prologue[2]{
+             contentLabel.text = prologue[3]
              prevButtonHiddenFalse()
             UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
-                self.contentLabel.text = self.convArray[3]
+                self.contentLabel.text = self.prologue[3]
             }, completion: nil)
-         }else if contentLabel.text == convArray[3]{
+         }else if contentLabel.text == prologue[3]{
             UIView.transition(from: npcViewController, to: inventoryCollectionView, duration: 2, options: .transitionCrossDissolve, completion: nil)
             npcViewController.isHidden = true
             inventoryCollectionView.isHidden = false
+            soundEffect!.stop()
          }
+        
+        //ending
+        if contentLabel.text == ending[0]{
+            prevButtonHiddenFalse()
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: { self.contentLabel.text = self.ending[1] }, completion: nil)
+        }else if contentLabel.text == ending[1]{
+            performSegue(withIdentifier: "congratulations", sender: nil)
+            soundEffect!.stop()
+        }
     }
     
     @IBAction func prevButtonAction(_ sender: Any) {
-        if contentLabel.text == convArray[0]{
+        //prologue
+        if contentLabel.text == prologue[0]{
             prevButtonHidden()
-        }else if contentLabel.text == convArray [1]{
-            contentLabel.text = convArray[0]
+        }else if contentLabel.text == prologue [1]{
+            contentLabel.text = prologue[0]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[0]
+            }, completion: nil)
             prevButtonHidden()
-        }else if contentLabel.text == convArray[2]{
-            contentLabel.text = convArray[1]
-        }else if contentLabel.text == convArray[3]{
-            contentLabel.text = convArray[2]
+        }else if contentLabel.text == prologue[2]{
+            contentLabel.text = prologue[1]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[1]
+            }, completion: nil)
+        }else if contentLabel.text == prologue[3]{
+            contentLabel.text = prologue[2]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.prologue[2]
+            }, completion: nil)
+        }
+        
+        //ending
+        if contentLabel.text == ending[0]{
+            prevButtonHidden()
+        }else if contentLabel.text == ending[1]{
+            contentLabel.text = ending[0]
+            UIView.transition(with: contentLabel, duration: 1, options: .transitionCrossDissolve, animations: {
+                self.contentLabel.text = self.ending[0]
+            }, completion: nil)
+            prevButtonHidden()
         }
     }
 }

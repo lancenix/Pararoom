@@ -84,6 +84,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Uze-r4-cQ2"/>
                     </view>
+                    <navigationItem key="navigationItem" id="v8W-bH-Nag"/>
                     <connections>
                         <outlet property="backgroundImage" destination="bxe-hW-aR7" id="0j3-uQ-Sdr"/>
                         <outlet property="menuView" destination="xzu-9j-nqm" id="woe-uE-2oT"/>
@@ -362,16 +363,78 @@
                         <outlet property="sceneView" destination="F2S-NT-Wu7" id="LRn-MH-Ye9"/>
                         <outlet property="soulFragment" destination="run-aZ-RhC" id="2n8-Kj-MxN"/>
                         <outlet property="woodImage" destination="jvj-9b-13Z" id="N5F-n9-UK8"/>
+                        <segue destination="Vw9-bH-abC" kind="presentation" identifier="congratulations" animates="NO" modalPresentationStyle="fullScreen" id="EdI-pG-Qx4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-3l-eWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011.5942028985507" y="-578.57142857142856"/>
+            <point key="canvasLocation" x="1074" y="-578"/>
+        </scene>
+        <!--Congratulation View Controller-->
+        <scene sceneID="BqR-9k-5rS">
+            <objects>
+                <viewController id="Vw9-bH-abC" customClass="CongratulationViewController" customModule="Pararoom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nae-F4-O1y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-6D-Tgv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESC-TJ-7Iq">
+                                <rect key="frame" x="-10" y="0.0" width="435" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Onboarding Text Box" translatesAutoresizingMaskIntoConstraints="NO" id="bVo-IX-bu3">
+                                        <rect key="frame" x="-410" y="-169" width="1243" height="1147"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Main Menu" translatesAutoresizingMaskIntoConstraints="NO" id="ifY-es-lgN">
+                                        <rect key="frame" x="130" y="405" width="162" height="290"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-43-E5U">
+                                        <rect key="frame" x="110" y="278" width="204" height="136"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">Congratulations!!
+You have just finished the prologue episode!!</string>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-rc-Ak0">
+                                        <rect key="frame" x="130" y="520" width="162" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="backToMainMenuAction:" destination="Vw9-bH-abC" eventType="touchUpInside" id="p5h-1J-Vtm"/>
+                                            <action selector="proceedButton:" destination="1XI-gC-tny" eventType="touchUpInside" id="VNt-bb-g0b"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="epsButton" translatesAutoresizingMaskIntoConstraints="NO" id="DJH-K6-Trl">
+                                        <rect key="frame" x="130" y="437" width="163" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="mHP-tc-dbd"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="PHe-6D-Tgv" id="H0O-aW-RGn"/>
+                        <segue destination="1XI-gC-tny" kind="presentation" identifier="toMainMenu" animates="NO" modalPresentationStyle="fullScreen" id="1H4-xu-Nqh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1Y-dO-BEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1973.913043478261" y="-578.57142857142856"/>
         </scene>
     </scenes>
     <resources>
         <image name="Fireball Text Box" width="1890" height="1417"/>
         <image name="FireballB_Dead" width="151" height="148"/>
+        <image name="Main Menu" width="945" height="2008"/>
         <image name="Next Button Fire Ball" width="1890" height="1417"/>
         <image name="Onboarding Text Box" width="1890" height="1417"/>
         <image name="PROCEED" width="945" height="2008"/>
