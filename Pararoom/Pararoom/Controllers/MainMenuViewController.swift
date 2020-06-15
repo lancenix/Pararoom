@@ -57,6 +57,7 @@ class MainMenuViewController: UIViewController {
     @IBAction func playButton(_ sender: UIButton) {
         menuView.isHidden = true
         onboardingViewContainer.isHidden = false
+        UIView.transition(from: menuView, to: onboardingViewContainer, duration: 2, options: .transitionCrossDissolve, completion: nil)
         tapSound()
         
     }
