@@ -18,6 +18,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet weak var recommendationViewContainer: UIView!
     @IBOutlet weak var npcViewController: UIView!
+    @IBOutlet weak var congratsView: UIView!
     
     @IBOutlet weak var npcImage: UIImageView!
     @IBOutlet weak var nextButtonImage: UIImageView!
@@ -50,24 +51,26 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var jumpScareimg: UIImageView!
     
     
+    //MARK: Congratulations View Outlets
+    @IBOutlet weak var BackToMainMenu: UIButton!
+    
+    
     var prologue = ["Well… Well… Well… \n Look Who’s Here!!!", "I can see you’re trapped, I know a way how to escape but there is one condition...", "That is if you help me find a soul fragment to revive my friend... I'll help you escape!!", "You can find the soul fragment by interacting from this room! \n Good Luck..."]
     var inventoryItem : [String] = ["", "", ""]
     let pinChoices = ["Heart", "Soul", "Fire"]
     private let correctPIN = "34373"
     
     //MARK: Flags
-    var fragmentIsSelected = false
-    var hammerIsSelected = false
-    var takeHammerFlag = false
-    var takeFragmentFlag = false
+    private var fragmentIsSelected = false
+    private var hammerIsSelected = false
+    private var takeHammerFlag = false
+    private var takeFragmentFlag = false
     private var woodDestroyedFlag = false
     private var flagPin = false
     private var showPainting = false
-    var isSelected = true
-    var gerakFrameKiri = true
+    private var isSelected = true
+    private var gerakFrameKiri = true
     private var fireballIsAlive = false
-//    var manager = CMMotionManager()
-    
     
     let nodeBrankas = SCNNode()
     let nodeWoodboard = SCNNode()
@@ -106,7 +109,11 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         registerGestureRecognizers()
     }
     
-        
+    @IBAction func goToMainMenu(_ sender: Any) {
+        performSegue(withIdentifier: "toMainMenu", sender: nil)
+    }
+    
+    
     @IBAction func woodPressed(_ sender: Any) {
         if hammerIsSelected{
             nailSound()
@@ -283,23 +290,6 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             else if hitResults.first?.node.name == "frameKiri"{
                 tappingSound()
                 ZoomedNodeImage.image = UIImage(named: "frame answered")
-                
-//                let interval = 0.01
-//
-//
-//                manager.deviceMotionUpdateInterval = interval
-//                let queue = OperationQueue()
-//
-//                manager.startDeviceMotionUpdates(to: queue, withHandler: {(data, error) in
-//                guard let data = data else { return }
-//                    guard self.manager.isDeviceMotionAvailable else { return }
-//                let gravity = data.gravity
-//                    let rotation = atan2(gravity.x, gravity.y) - .pi
-//
-//                    OperationQueue.main.addOperation {
-//                        self.ZoomedNodeImage?.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
-//                    }
-//                })
                 NodeInteractionView.isHidden = false
             }
             else if hitResults.first?.node.name == "fireKanan" {
@@ -329,9 +319,15 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
             else if hitResults.first?.node.name == "nodePortal" {
                 portalSound()
                 self.nodePortal.geometry?.materials.first?.diffuse.contents = UIImage(named: "portal")
-                DispatchQueue.main.asyncAfter(deadline:.now() + 2.0, execute: {
-                   self.performSegue(withIdentifier:"congratulations",sender: self)
-                })
+                
+                congratsView.isHidden = false
+                congratsView.alpha = 0
+                UIView.animate(withDuration: 1, delay: 1, options: .curveLinear, animations: {
+                    self.congratsView.alpha = 1
+                    self.sceneView.session.pause()
+                }, completion: nil)
+                
+                
             }
         }
     }
@@ -375,7 +371,7 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
         hammerButton.isHidden = true
         soulFragment.isHidden = true
         
-        
+        congratsView.isHidden = true
     }
     
     //MARK: NPC game prologue dialog

@@ -31,7 +31,8 @@ class CongratulationViewController: UIViewController {
     }
     
     @IBAction func backToMainMenuAction(_ sender: Any) {
-        performSegue(withIdentifier: "toMainMenu", sender: self)
+        performSegue(withIdentifier: "goToMainMenu", sender: self)
+        print("go to main menu")
     }
     
     

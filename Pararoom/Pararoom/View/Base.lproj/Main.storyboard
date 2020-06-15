@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="1XI-gC-tny" customClass="MainMenuViewController" customModule="Pararoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E25-lM-0T5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-hW-aR7">
@@ -385,15 +385,32 @@
                                     <outlet property="delegate" destination="abv-5q-nIE" id="2Ff-j0-Anf"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZs-g5-QcY">
+                                <rect key="frame" x="0.0" y="0.0" width="432" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Z5-QY-5TY">
+                                        <rect key="frame" x="66" y="284" width="275" height="524"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Main Menu"/>
+                                        <connections>
+                                            <action selector="goToMainMenu:" destination="abv-5q-nIE" eventType="touchUpInside" id="5AT-aD-lL8"/>
+                                            <segue destination="1XI-gC-tny" kind="presentation" identifier="toMainMenu" id="ara-Nd-aIh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Fci-vS-EiB"/>
                     </view>
                     <navigationItem key="navigationItem" id="oEd-2P-eoi"/>
                     <connections>
+                        <outlet property="BackToMainMenu" destination="4Z5-QY-5TY" id="Q4h-2U-Lyr"/>
                         <outlet property="NodeInteractionView" destination="VnP-2S-26k" id="gcV-xa-hVJ"/>
                         <outlet property="PINChoicesCollectionView" destination="LsX-v5-RAr" id="i9g-73-DmK"/>
                         <outlet property="ZoomedNodeImage" destination="3yb-1z-5K5" id="eXH-SU-Xeg"/>
+                        <outlet property="congratsView" destination="nZs-g5-QcY" id="Nwr-uK-aJz"/>
                         <outlet property="contentLabel" destination="jOS-eq-oQG" id="FWj-8X-e7B"/>
                         <outlet property="contentLabelEnding" destination="QhQ-iB-yR0" id="yPr-0g-bCO"/>
                         <outlet property="deadFireballButton" destination="JSv-Vf-Ait" id="54d-Li-cbf"/>
@@ -419,12 +436,11 @@
                         <outlet property="sceneView" destination="F2S-NT-Wu7" id="LRn-MH-Ye9"/>
                         <outlet property="soulFragment" destination="run-aZ-RhC" id="2n8-Kj-MxN"/>
                         <outlet property="woodImage" destination="jvj-9b-13Z" id="N5F-n9-UK8"/>
-                        <segue destination="Vw9-bH-abC" kind="presentation" identifier="congratulations" animates="NO" modalPresentationStyle="fullScreen" id="EdI-pG-Qx4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-3l-eWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073.913043478261" y="-578.57142857142856"/>
+            <point key="canvasLocation" x="1092.753623188406" y="-1441.0714285714284"/>
         </scene>
         <!--Congratulation View Controller-->
         <scene sceneID="BqR-9k-5rS">
@@ -443,7 +459,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Onboarding Text Box" translatesAutoresizingMaskIntoConstraints="NO" id="bVo-IX-bu3">
-                                        <rect key="frame" x="-410" y="-169" width="1256" height="1147"/>
+                                        <rect key="frame" x="-410" y="-194" width="1256" height="1233"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-43-E5U">
@@ -455,23 +471,21 @@ You have just finished the prologue episode!!</string>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-rc-Ak0">
-                                        <rect key="frame" x="140" y="520" width="162" height="61"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <action selector="backToMainMenuAction:" destination="Vw9-bH-abC" eventType="touchUpInside" id="p5h-1J-Vtm"/>
-                                        </connections>
-                                    </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="epsButton" translatesAutoresizingMaskIntoConstraints="NO" id="DJH-K6-Trl">
-                                        <rect key="frame" x="139" y="437" width="163" height="68"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Main Menu" translatesAutoresizingMaskIntoConstraints="NO" id="ifY-es-lgN">
-                                        <rect key="frame" x="137" y="400" width="165" height="290"/>
+                                        <rect key="frame" x="139" y="422" width="163" height="71"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-rc-Ak0">
+                                <rect key="frame" x="129" y="368" width="164" height="331"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Main Menu"/>
+                                <connections>
+                                    <action selector="backToMainMenuAction:" destination="Vw9-bH-abC" eventType="touchUpInside" id="p5h-1J-Vtm"/>
+                                    <segue destination="1XI-gC-tny" kind="presentation" identifier="goToMainMenu" animates="NO" modalPresentationStyle="fullScreen" id="6dd-Kh-vpR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mHP-tc-dbd"/>
@@ -479,7 +493,6 @@ You have just finished the prologue episode!!</string>
                     <connections>
                         <outlet property="backgroundImage" destination="PHe-6D-Tgv" id="H0O-aW-RGn"/>
                         <outlet property="toMainMenu" destination="MKT-rc-Ak0" id="KGr-XS-tC2"/>
-                        <segue destination="1XI-gC-tny" kind="presentation" identifier="toMainMenu" animates="NO" modalPresentationStyle="fullScreen" id="1H4-xu-Nqh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1Y-dO-BEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -487,6 +500,9 @@ You have just finished the prologue episode!!</string>
             <point key="canvasLocation" x="1973.913043478261" y="-578.57142857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ara-Nd-aIh"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Fireball Text Box" width="1890" height="1417"/>
         <image name="FireballB_Dead" width="151" height="148"/>
