@@ -30,7 +30,7 @@ class MainMenuViewController: UIViewController {
     
     
     func setupView() {
-        backgroundImage.loadGif(name: "gameBg")
+        backgroundImage.loadGif(name: "gameBackground")
         self.view.sendSubviewToBack(backgroundImage)
         self.view.bringSubviewToFront(menuView)
         

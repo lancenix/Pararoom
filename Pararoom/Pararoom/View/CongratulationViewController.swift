@@ -12,24 +12,27 @@ import AVFoundation
 class CongratulationViewController: UIViewController {
 
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var toMainMenu: UIButton!
     
     var bgm: AVAudioPlayer?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        backgroundImage.loadGif(name: "gameBg")
-    }
-    
-    @IBAction func backToMainMenuAction(_ sender: Any) {
-        performSegue(withIdentifier: "toMainMenu", sender: self)
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let mainmenu = segue.destination as? MainMenuViewController {
             mainmenu.player = bgm
             mainmenu.player?.volume = 1
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        backgroundImage.loadGif(name: "gameBackground")
+    }
+    
+    @IBAction func backToMainMenuAction(_ sender: Any) {
+        performSegue(withIdentifier: "toMainMenu", sender: self)
+    }
+    
     
 }
