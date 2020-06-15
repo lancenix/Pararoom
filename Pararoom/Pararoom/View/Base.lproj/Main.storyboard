@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="1XI-gC-tny" customClass="MainMenuViewController" customModule="Pararoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E25-lM-0T5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-hW-aR7">
@@ -395,7 +395,7 @@
                                         <state key="normal" image="Main Menu"/>
                                         <connections>
                                             <action selector="goToMainMenu:" destination="abv-5q-nIE" eventType="touchUpInside" id="5AT-aD-lL8"/>
-                                            <segue destination="1XI-gC-tny" kind="presentation" identifier="toMainMenu" id="ara-Nd-aIh"/>
+                                            <segue destination="1XI-gC-tny" kind="presentation" identifier="toMainMenu" animates="NO" modalPresentationStyle="fullScreen" id="ara-Nd-aIh"/>
                                         </connections>
                                     </button>
                                 </subviews>
