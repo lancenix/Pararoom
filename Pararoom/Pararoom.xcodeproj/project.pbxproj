@@ -19,6 +19,7 @@
 		47961A5D249728470020BA79 /* gameBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47961A5C249728470020BA79 /* gameBackground.gif */; };
 		47DCF8C02493245200BBC2E3 /* FireballA_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */; };
 		47DCF8C22493272900BBC2E3 /* FireballB_SFX.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */; };
+		EA577EDB2493C17900DCAEF6 /* portalopen.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA577EDA2493C17900DCAEF6 /* portalopen.wav */; };
 		EA5CA4CF24931D1D00778EBA /* penampakan 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */; };
 		EA5CA4D024931D1D00778EBA /* Puzzle 1 solved.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CC24931D1D00778EBA /* Puzzle 1 solved.wav */; };
 		EA5CA4D124931D1D00778EBA /* Jumpscare safebox.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA5CA4CD24931D1D00778EBA /* Jumpscare safebox.wav */; };
@@ -50,6 +51,7 @@
 		47961A5C249728470020BA79 /* gameBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gameBackground.gif; sourceTree = "<group>"; };
 		47DCF8BF2493245200BBC2E3 /* FireballA_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballA_SFX.gif; sourceTree = "<group>"; };
 		47DCF8C12493272900BBC2E3 /* FireballB_SFX.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FireballB_SFX.gif; sourceTree = "<group>"; };
+		EA577EDA2493C17900DCAEF6 /* portalopen.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = portalopen.wav; sourceTree = "<group>"; };
 		EA5CA4CB24931D1D00778EBA /* penampakan 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "penampakan 1.wav"; sourceTree = "<group>"; };
 		EA5CA4CC24931D1D00778EBA /* Puzzle 1 solved.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Puzzle 1 solved.wav"; sourceTree = "<group>"; };
 		EA5CA4CD24931D1D00778EBA /* Jumpscare safebox.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Jumpscare safebox.wav"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				EA5CA4CC24931D1D00778EBA /* Puzzle 1 solved.wav */,
 				EA5CA4CE24931D1D00778EBA /* tap interaction.wav */,
 				479561092493B9E5007CD9CC /* woman laughing.mp3 */,
+				EA577EDA2493C17900DCAEF6 /* portalopen.wav */,
 			);
 			path = "BGM and Sound Effects";
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				EAA197C0249316A70072375E /* nailpulling.mp3 in Resources */,
 				EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */,
 				EAA197BE2493169D0072375E /* BGM.mp3 in Resources */,
+				EA577EDB2493C17900DCAEF6 /* portalopen.wav in Resources */,
 				4755AF3F248F7C9B00CF2D95 /* Assets.xcassets in Resources */,
 				EA5CA4D224931D1D00778EBA /* tap interaction.wav in Resources */,
 				4755AF3D248F7C9900CF2D95 /* Main.storyboard in Resources */,
@@ -413,7 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = WU2B466A8A;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -432,7 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = WU2B466A8A;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
