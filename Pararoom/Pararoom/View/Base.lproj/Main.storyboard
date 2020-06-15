@@ -442,67 +442,7 @@
             </objects>
             <point key="canvasLocation" x="1092.753623188406" y="-1441.0714285714284"/>
         </scene>
-        <!--Congratulation View Controller-->
-        <scene sceneID="BqR-9k-5rS">
-            <objects>
-                <viewController id="Vw9-bH-abC" customClass="CongratulationViewController" customModule="Pararoom" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nae-F4-O1y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-6D-Tgv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESC-TJ-7Iq">
-                                <rect key="frame" x="-10" y="0.0" width="435" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Onboarding Text Box" translatesAutoresizingMaskIntoConstraints="NO" id="bVo-IX-bu3">
-                                        <rect key="frame" x="-410" y="-194" width="1256" height="1233"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-43-E5U">
-                                        <rect key="frame" x="110" y="278" width="221" height="136"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <string key="text">Congratulations!!
-You have just finished the prologue episode!!</string>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="epsButton" translatesAutoresizingMaskIntoConstraints="NO" id="DJH-K6-Trl">
-                                        <rect key="frame" x="139" y="422" width="163" height="71"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-rc-Ak0">
-                                <rect key="frame" x="129" y="368" width="164" height="331"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Main Menu"/>
-                                <connections>
-                                    <action selector="backToMainMenuAction:" destination="Vw9-bH-abC" eventType="touchUpInside" id="p5h-1J-Vtm"/>
-                                    <segue destination="1XI-gC-tny" kind="presentation" identifier="goToMainMenu" animates="NO" modalPresentationStyle="fullScreen" id="6dd-Kh-vpR"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="mHP-tc-dbd"/>
-                    </view>
-                    <connections>
-                        <outlet property="backgroundImage" destination="PHe-6D-Tgv" id="H0O-aW-RGn"/>
-                        <outlet property="toMainMenu" destination="MKT-rc-Ak0" id="KGr-XS-tC2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j1Y-dO-BEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1973.913043478261" y="-578.57142857142856"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ara-Nd-aIh"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Fireball Text Box" width="1890" height="1417"/>
         <image name="FireballB_Dead" width="151" height="148"/>

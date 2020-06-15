@@ -613,9 +613,9 @@ class GamePlayViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let congratsVC = segue.destination as? CongratulationViewController {
-            congratsVC.bgm = bgm
-            congratsVC.bgm?.volume = 1
+        if let backToMainMenu = segue.destination as? MainMenuViewController {
+            backToMainMenu.player = bgm
+            backToMainMenu.player?.volume = 1
         }
     }
     

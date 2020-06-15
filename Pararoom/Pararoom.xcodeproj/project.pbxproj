@@ -33,7 +33,6 @@
 		EAA197C2249316C70072375E /* SolvingPuzzle.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C1249316C70072375E /* SolvingPuzzle.wav */; };
 		EAA197C4249316CE0072375E /* safetybox_open.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C3249316CE0072375E /* safetybox_open.mp3 */; };
 		EAA197C6249316D80072375E /* FireCrackleSE.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAA197C5249316D80072375E /* FireCrackleSE.wav */; };
-		EAA197C82493337D0072375E /* CongratulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA197C72493337D0072375E /* CongratulationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +64,6 @@
 		EAA197C1249316C70072375E /* SolvingPuzzle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SolvingPuzzle.wav; sourceTree = "<group>"; };
 		EAA197C3249316CE0072375E /* safetybox_open.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = safetybox_open.mp3; sourceTree = "<group>"; };
 		EAA197C5249316D80072375E /* FireCrackleSE.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireCrackleSE.wav; sourceTree = "<group>"; };
-		EAA197C72493337D0072375E /* CongratulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CongratulationViewController.swift; path = Pararoom/View/CongratulationViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +108,6 @@
 		472B71902491622D00110BE1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EAA197C72493337D0072375E /* CongratulationViewController.swift */,
 				EAA1978B2490ABF20072375E /* MainMenuViewController.swift */,
 				EAA197B3249105200072375E /* GamePlayViewController.swift */,
 				4783A831249254C600171937 /* CustomAlertViewController.swift */,
@@ -271,7 +268,6 @@
 				4783A8102492256300171937 /* InventoryCollectionViewCell.swift in Sources */,
 				4783A80E2492136D00171937 /* PINChoicesCollectionViewCell.swift in Sources */,
 				4783A832249254C600171937 /* CustomAlertViewController.swift in Sources */,
-				EAA197C82493337D0072375E /* CongratulationViewController.swift in Sources */,
 				4755AF36248F7C9900CF2D95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = H79LVA7HS2;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -436,7 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = H79LVA7HS2;
 				INFOPLIST_FILE = Pararoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
