@@ -1,12 +1,10 @@
 # 🔮 Pararoom 🔮
 #### *A submission for the Nano Challenge 3 Project at Apple Developer Academy*
 
----
-
-## Project Description
+## 🎮 Project Description
 Pararoom is an escape room game with AR Experience that puts a bit of sci-fi theme into it. Designed so the game scene feels like it takes place in a parallel dimension. Hence, the name.
 
-We recommend users to use earphones/headphones when playing, since we implement 3D sound elements into the game. 
+We recommend users to use earphones/headphones when trying it out, since we implement 3D sound elements into the game. 
 
 Explore **your** room and solve the puzzles so you can escape and go back into your own dimension!
 
