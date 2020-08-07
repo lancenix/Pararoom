@@ -13,19 +13,19 @@ Explore **your** room and solve the puzzles so you can escape and go back into y
 - [Best Game Experience by Apple Developer Academy](https://badgr.com/backpack/badges/5eec37b894e96674580e3804)
 
 ## 🤹‍ Teammates
-- **Daniel Claude Nabasa**
+- **🍒 Claude**
   - Game Designer
   - Gameplay Programmer
   - Sound Engineer
   - Character Artist
   
-- **Rommy Julius**
+- **🍓 Rommy**
   - UI Programmer
   - Sound Engineer
   - Lead Game Artist
   - Designer
 
-- **Maria Jeffina Setiawan**
+- **🍉 Jeffina**
   - Project Manager
   - Lead Programmer
   - SFX Engineer
