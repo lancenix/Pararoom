@@ -16,16 +16,17 @@ Explore **your** room and solve the puzzles so you can escape and go back into y
 - **Daniel Claude Nabasa**
   - Game Designer
   - Gameplay Programmer
-  - Sound Designer
-  - Game Artist
+  - Sound Engineer
+  - Character Artist
   
 - **Rommy Julius**
   - UI Programmer
-  - Sound Designer
-  - Game Artist
+  - Sound Engineer
+  - Lead Game Artist
+  - Designer
 
 - **Maria Jeffina Setiawan**
-  - Gameplay Programmer
-  - SFX Engineer
-  - Game Artist
   - Project Manager
+  - Lead Programmer
+  - SFX Engineer
+  - Environment Artist
